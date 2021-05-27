@@ -1,0 +1,92 @@
+package et3.java.projet.association;
+
+public class EcritureComptable {
+	
+	private Evenement evenement;
+	private Compte compte;
+	private String date;
+	private double somme;
+	
+	
+	/** Crée une écriture comptable
+	 * @param evenement
+	 * @param compte
+	 * @param date
+	 * @param somme
+	 */
+	public EcritureComptable(Evenement evenement, Compte compte, String date, double somme) {
+		this.evenement=evenement;
+		this.compte=compte;
+		this.date=date;
+		this.somme=somme;
+	}
+
+	/** Obtenir le/la evenement
+	 * @return le/la evenement
+	 */
+	public Evenement getEvenement() {
+		return evenement;
+	}
+
+	/** Définition de evenement
+	 * @param evenement le/la evenement à définir
+	 */
+	public void setEvenement(Evenement evenement) {
+		this.evenement = evenement;
+	}
+
+	/** Obtenir le/la compte
+	 * @return le/la compte
+	 */
+	public Compte getCompte() {
+		return compte;
+	}
+
+	/** Définition de compte
+	 * @param compte le/la compte à définir
+	 */
+	public void setCompte(Compte compte) {
+		this.compte = compte;
+	}
+
+	/** Obtenir le/la date
+	 * @return le/la date
+	 */
+	public String getDate() {
+		return date;
+	}
+
+	/** Définition de date
+	 * @param date le/la date à définir
+	 */
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	/** Obtenir le/la somme
+	 * @return le/la somme
+	 */
+	public double getSomme() {
+		return somme;
+	}
+
+	/** Définition de somme
+	 * @param somme le/la somme à définir
+	 */
+	public void setSomme(double somme) {
+		this.somme = somme;
+	}
+	
+	
+	/**
+	 * Retourne une chaine de caractères correspondant à l'écriture comptable
+	 */
+	@Override
+	public String toString() {
+		return "EcritureComptable [evenement=" + evenement + ", compte=" + compte + ", date=" + date + ", somme="
+				+ somme + "]";
+	}
+	
+	
+
+}
