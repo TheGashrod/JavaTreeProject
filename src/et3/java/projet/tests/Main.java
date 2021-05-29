@@ -60,17 +60,17 @@ public class Main {
 		
 		System.out.println(membre1.getListeNominations());
 		
-		membre1.nominerArbre(new Arbre());
-		membre1.nominerArbre(new Arbre());
-		membre1.nominerArbre(new Arbre());
-		membre1.nominerArbre(new Arbre());
-		membre1.nominerArbre(new Arbre());
-		
-		System.out.println(membre1.getListeNominations());
-		
-		membre1.nominerArbre(new Arbre());
-		
-		System.out.println(membre1.getListeNominations());
+//		membre1.nominerArbre(new Arbre());
+//		membre1.nominerArbre(new Arbre());
+//		membre1.nominerArbre(new Arbre());
+//		membre1.nominerArbre(new Arbre());
+//		membre1.nominerArbre(new Arbre());
+//		
+//		System.out.println(membre1.getListeNominations());
+//		
+//		membre1.nominerArbre(new Arbre());
+//		
+//		System.out.println(membre1.getListeNominations());
 		
 		//System.out.println(association.genererRapportActivite());
 		
