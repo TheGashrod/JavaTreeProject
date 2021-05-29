@@ -9,10 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import et3.java.projet.municipalite.Arbre;
+import et3.java.projet.municipalite.Municipalite;
 
 public class FileReader 
 {
-	public static void getDataFromCSVFile(String csvFilePath)
+	public static void getDataFromCSVFile(String csvFilePath, Municipalite municipalite)
 	{
         String line = "";
         String[] data = null;
@@ -35,8 +36,7 @@ public class FileReader
         String stadeDeveloppement;
         Boolean remarquable;
         Float[] geographicalPoint2D = new Float[2];
-        // la data de municipale list
-        ArrayList<Arbre> listeArbre = new ArrayList<Arbre>();
+
         
         try (BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(csvFilePath), StandardCharsets.ISO_8859_1)) 
         {
@@ -170,9 +170,8 @@ public class FileReader
                 Arbre a = new Arbre( idBase, typeEmplacement, domanialite, arrondissement, complementAdresse, adresse, idEmplacement,
                 	libelleFrancais, genre, espece, varieteOuCultivar, circonferenceEnCm, hauteurEnM, stadeDeveloppement, remarquable,
                 	geographicalPoint2D );
-                
-                
-                listeArbre.add(a);
+        
+                municipalite.ajouterNouvelArbre(a);
                 
                 
                 	
@@ -200,11 +199,8 @@ public class FileReader
             System.err.println(exception);
         }
         
-//       Afficher la liste d'arbre
-        for(Arbre a : listeArbre) {
-        	System.out.println(a.toString());
-        } 
         
 
+       
 	}
 }
