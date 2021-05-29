@@ -1,10 +1,10 @@
 package et3.java.projet.association;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import et3.java.projet.comptabilite.EcritureComptable;
 import et3.java.projet.comptabilite.LivreComptable;
+import et3.java.projet.outils.Date;
 
 public class Association {
 	

@@ -1,6 +1,6 @@
 package et3.java.projet.comptabilite;
 
-import java.util.Date;
+import et3.java.projet.outils.Date;
 
 public class EcritureComptable {
 	

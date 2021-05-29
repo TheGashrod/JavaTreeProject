@@ -1,14 +1,12 @@
 package et3.java.projet.association;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedList;
 
 import et3.java.projet.comptabilite.Compte;
 import et3.java.projet.comptabilite.EcritureComptable;
 import et3.java.projet.comptabilite.LivreComptable;
 import et3.java.projet.municipalite.Arbre;
+import et3.java.projet.outils.Date;
 
 public class Membre extends Compte {
 	

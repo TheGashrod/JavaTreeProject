@@ -20,7 +20,8 @@ public class Date implements Comparable<Date> {
 	 * Met la date d'aujourd'hui :)
 	 */
 	public Date() {
-
+		//Solution temporaire
+		this(2021, 05, 29);
 	}
 	
 	
@@ -40,5 +41,13 @@ public class Date implements Comparable<Date> {
 			}
 		}
 	}
+
+
+	@Override
+	public String toString() {
+		return jour + "/" + mois + "/" + annee;
+	}
+	
+	
 
 }
