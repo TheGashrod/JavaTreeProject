@@ -39,13 +39,13 @@ public class Main
 		
 
 		//test que municipalite contient bien une liste avec tous les arbres
-//		System.out.println(municipalite.listeArbretoString());
+		System.out.println(municipalite.listeArbretoString());
 		
 		// test comparable date
-		Date t1 = new Date(2000, 07, 12);
-		Date t2 = new Date(2000, 07, 13);
-//		
-		System.out.println(t2.compareTo(t1));
+//		Date t1 = new Date(2000, 07, 12);
+//		Date t2 = new Date(2000, 07, 13);
+////		
+//		System.out.println(t2.compareTo(t1));
 		
 //		
 
