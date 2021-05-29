@@ -2,6 +2,8 @@ package et3.java.projet.association;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 import et3.java.projet.comptabilite.Compte;
 import et3.java.projet.comptabilite.EcritureComptable;
@@ -20,7 +22,7 @@ public class Membre extends Compte {
 	private Date dateDeNaissance;
 	
 	private Association association;
-	private ArrayList<Nomination> listeNominations;
+	private LinkedList<Arbre> listeNominations;
 	
 	/**
 	 * @param id
@@ -41,6 +43,8 @@ public class Membre extends Compte {
 		this.adresse = adresse;
 		this.estPresident = estPresident;
 		this.dateDeNaissance = dateDeNaissance;
+		
+		this.listeNominations = new LinkedList<Arbre>();
 	}
 	
 	
@@ -96,7 +100,25 @@ public class Membre extends Compte {
 		}
 	}
 	
-	public void nominerArbre(Arbre arbre) {}
+	
+	/** Obtenir le/la listeNominations
+	 * @return le/la listeNominations
+	 */
+	public LinkedList<Arbre> getListeNominations() {
+		return listeNominations;
+	}
+
+
+
+	/** Ajouter un arbre à la liste des nominations, si la liste contient déjà 5 arbres le plus ancien choix est retiré 
+	 * @param arbre
+	 */
+	public void nominerArbre(Arbre arbre) {
+		this.getListeNominations().addFirst(arbre);
+		if(this.getListeNominations().size() > 5) {
+			this.getListeNominations().removeLast();
+		}
+	}
 	
 	
 
