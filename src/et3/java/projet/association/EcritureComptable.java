@@ -1,10 +1,12 @@
 package et3.java.projet.association;
 
+import java.util.Date;
+
 public class EcritureComptable {
 	
 	private Evenement evenement;
 	private Compte compte;
-	private String date;
+	private Date date;
 	private double somme;
 	
 	
@@ -14,9 +16,10 @@ public class EcritureComptable {
 	 * @param date
 	 * @param somme
 	 */
-	public EcritureComptable(Evenement evenement, Compte compte, String date, double somme) {
-		this.evenement=evenement;
-		this.compte=compte;
+	public EcritureComptable(Evenement evenement, Compte compte, Date date, double somme) {
+		this.setEvenement(evenement);
+		this.setCompte(compte);
+		
 		this.date=date;
 		this.somme=somme;
 	}
@@ -33,6 +36,7 @@ public class EcritureComptable {
 	 */
 	public void setEvenement(Evenement evenement) {
 		this.evenement = evenement;
+		this.evenement.setEcritureComptable(this);
 	}
 
 	/** Obtenir le/la compte
@@ -47,19 +51,20 @@ public class EcritureComptable {
 	 */
 	public void setCompte(Compte compte) {
 		this.compte = compte;
+		this.compte.setEcritureComptable(this);
 	}
 
 	/** Obtenir le/la date
 	 * @return le/la date
 	 */
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
 	/** Définition de date
 	 * @param date le/la date à définir
 	 */
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -83,8 +88,7 @@ public class EcritureComptable {
 	 */
 	@Override
 	public String toString() {
-		return "EcritureComptable [evenement=" + evenement + ", compte=" + compte + ", date=" + date + ", somme="
-				+ somme + "]";
+		return date + " | " + somme + "€  | " + compte + " | "+ evenement;
 	}
 	
 	

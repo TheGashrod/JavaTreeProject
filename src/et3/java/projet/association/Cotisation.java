@@ -1,9 +1,22 @@
 package et3.java.projet.association;
 
-public class Cotisation implements Evenement {
+public class Cotisation extends Evenement {
+	
+	int annee;
 
-	public Cotisation() {
-		// TODO Auto-generated constructor stub
+	/**
+	 * @param annee
+	 */
+	public Cotisation(int annee) {
+		super();
+		this.annee = annee;
 	}
+
+	@Override
+	public String toString() {
+		return "Cotisation [annee=" + annee + "]";
+	}
+	
+	
 
 }

@@ -1,6 +1,6 @@
 package et3.java.projet.association;
 
-public class Externe implements Compte {
+public class Externe extends Compte {
 	
 	private String designation;
 	private String adresse;

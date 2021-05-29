@@ -1,6 +1,6 @@
 package et3.java.projet.association;
 
-public class Facture implements Evenement {
+public class Facture extends Evenement {
 
 	private int numero;
 

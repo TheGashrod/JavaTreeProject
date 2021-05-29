@@ -1,9 +1,75 @@
 package et3.java.projet.association;
 
-public class Membre implements Compte {
+import java.util.ArrayList;
+import java.util.Date;
 
-	public Membre() {
-		// TODO Auto-generated constructor stub
+import et3.java.projet.municipalite.Arbre;
+
+public class Membre extends Compte {
+	
+	private static int count=0;
+	
+	private int id;
+	private String nom;
+	private String prenom;
+	private String adresse;
+	private boolean estPresident;
+	private Date dateDeNaissance;
+	
+	private Association association;
+	private ArrayList<Nomination> listeNominations;
+	
+	/**
+	 * @param id
+	 * @param nom
+	 * @param prenom
+	 * @param adresse
+	 * @param estPresident
+	 * @param dateDeNaissance
+	 * @param association
+	 */
+	public Membre(String nom, String prenom, String adresse, boolean estPresident, Date dateDeNaissance) {
+		super();
+		
+		count++;
+		this.id = count;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.estPresident = estPresident;
+		this.dateDeNaissance = dateDeNaissance;
 	}
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Membre [id=" + id + ", nom=" + nom + ", prenom=" + prenom+ ", adresse=" + adresse + ", dateDeNaissance=" + dateDeNaissance + "]";
+	}
+
+
+	/** Obtenir le/la association
+	 * @return le/la association
+	 */
+	public Association getAssociation() {
+		return association;
+	}
+
+	/** Définition de association
+	 * @param association le/la association à définir
+	 */
+	public void setAssociation(Association association) {
+		this.association = association;
+	}
+
+
+
+	public void payerCotisation(int annee) {
+		association.payerCotisation(this, annee);
+	}
+	
+	public void nominerArbre(Arbre arbre) {}
+	
+	
 
 }
