@@ -52,9 +52,11 @@ public class Main
 		Float[] f = {48.906433f , 2.3493621f};
 		Arbre arbre = new Arbre(911111187, "arbre", "domanialite", "ARRDT", "", "RUE ANDRE DANJON", 101001, "Noisetier de Byzance", "Corylus", "colurna","" ,
 				 85, 10, "Adulte", false, f);
-		System.out.println(arbre);
-		municipalite.ajouterNouvelArbre(arbre);		
-//		System.out.println(municipalite.getListeNotification());
+//		System.out.println(arbre);
+		municipalite.ajouterNouvelArbre(arbre);
+		municipalite.rendreRemarquable(arbre);
+		municipalite.supprimerArbre(arbre);
+		System.out.println(municipalite.getListeNotification());
 		
 		
 		
