@@ -13,7 +13,10 @@ public class Cotisation extends Evenement {
 		super();
 		this.annee = annee;
 	}
-
+	
+	/**
+	 * Retourne une chaine de caractères correspondant à l'état de l'objet
+	 */
 	@Override
 	public String toString() {
 		return "Cotisation [annee=" + annee + "]";

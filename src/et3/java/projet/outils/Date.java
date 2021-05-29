@@ -42,7 +42,9 @@ public class Date implements Comparable<Date> {
 		}
 	}
 
-
+	/**
+	 * Retourne une chaine de caractères correspondant à la date
+	 */
 	@Override
 	public String toString() {
 		return jour + "/" + mois + "/" + annee;

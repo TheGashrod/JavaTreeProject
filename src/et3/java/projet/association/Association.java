@@ -30,13 +30,13 @@ public class Association {
 		this.membres = new ArrayList<Membre>();
 	}
 	
-	
+	/** Inscription du membre dans l'association
+	 * @param membre à inscrire
+	 */
 	public void inscriptionMembre(Membre membre) {
 		this.membres.add(membre);
 		membre.setAssociation(this);
 	}
-	
-	
 	
 	/** Obtenir le/la livreComptable
 	 * @return le/la livreComptable
@@ -52,7 +52,7 @@ public class Association {
 		return membres;
 	}
 
-	/**
+	/** Enregistrer le paiement de la cotisation du membre pour l'annee demandée
 	 * @param membre
 	 * @param annee
 	 */

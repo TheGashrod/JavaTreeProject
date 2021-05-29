@@ -20,7 +20,10 @@ public class Externe extends Compte {
 		this.adresse = adresse;
 		this.typeDonateur = typeDonateur;
 	}
-
+	
+	/**
+	 * Retourne une chaine de caractères correspondant à l'état de l'objet
+	 */
 	@Override
 	public String toString() {
 		return "Externe [designation=" + designation + ", adresse=" + adresse + ", typeDonateur=" + typeDonateur + "]";

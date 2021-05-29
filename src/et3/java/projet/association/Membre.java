@@ -45,13 +45,13 @@ public class Membre extends Compte {
 		this.listeNominations = new LinkedList<Arbre>();
 	}
 	
-	
-	
+	/**
+	 * Retourne une chaine de caractère décrivant le membre
+	 */
 	@Override
 	public String toString() {
 		return "Membre [id=" + id + ", nom=" + nom + ", prenom=" + prenom+ ", adresse=" + adresse + ", dateDeNaissance=" + dateDeNaissance + "]";
 	}
-
 
 	/** Obtenir le/la association
 	 * @return le/la association
@@ -66,8 +66,7 @@ public class Membre extends Compte {
 	public void setAssociation(Association association) {
 		this.association = association;
 	}
-	
-	
+		
 	/** Est-ce que la cotisation du membre est payée pour l'annee demandée
 	 * @param annee
 	 * @return true si la cotisation est payée, false sinon
@@ -88,16 +87,21 @@ public class Membre extends Compte {
 		return false;
 	}
 	
+	/** Obtenir l'historique des transactions liées à ce membre
+	 * @return LivreComptable contenant les EcrituresComptable correspondantes
+	 */
 	public LivreComptable getHistorique() {
 		return this.getAssociation().getLivreComptable().getLivreByCompte(this);
 	}
 
+	/** Payer sa cotisation pour l'annee demandée
+	 * @param annee
+	 */
 	public void payerCotisation(int annee) {
 		if(!this.isCotisationPayee(annee)) {
 			association.payerCotisation(this, annee);
 		}
 	}
-	
 	
 	/** Obtenir le/la listeNominations
 	 * @return le/la listeNominations
@@ -106,15 +110,15 @@ public class Membre extends Compte {
 		return listeNominations;
 	}
 
-
-
 	/** Ajouter un arbre à la liste des nominations, si la liste contient déjà 5 arbres le plus ancien choix est retiré 
 	 * @param arbre
 	 */
 	public void nominerArbre(Arbre arbre) {
-		this.getListeNominations().addFirst(arbre);
-		if(this.getListeNominations().size() > 5) {
-			this.getListeNominations().removeLast();
+		if(!arbre.getRemarquable()) {
+			this.getListeNominations().addFirst(arbre);
+			if(this.getListeNominations().size() > 5) {
+				this.getListeNominations().removeLast();
+			}
 		}
 	}
 	

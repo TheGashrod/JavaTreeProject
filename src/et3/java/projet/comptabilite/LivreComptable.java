@@ -32,6 +32,10 @@ public class LivreComptable {
 		return livreComptableString;
 	}	
 	
+	/** Obtenir l'historique des EcritureComptable liées au compte demandé
+	 * @param compte
+	 * @return LivreComptable contenant les EcritureComptable correspondantes
+	 */
 	public LivreComptable getLivreByCompte(Compte compte) {
 		LivreComptable livre = new LivreComptable();
 		for (EcritureComptable ecritureComptable : historiqueEcritures) {

@@ -82,7 +82,6 @@ public class EcritureComptable {
 		this.somme = somme;
 	}
 	
-	
 	/**
 	 * Retourne une chaine de caractères correspondant à l'écriture comptable
 	 */
