@@ -31,7 +31,7 @@ public class Association {
 	}
 	
 	
-	public void insciptionMembre(Membre membre) {
+	public void inscriptionMembre(Membre membre) {
 		this.membres.add(membre);
 		membre.setAssociation(this);
 	}

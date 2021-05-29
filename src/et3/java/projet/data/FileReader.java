@@ -164,14 +164,13 @@ public class FileReader
 	        		}
                 	
 
-                //TODO Do something with data
                 	
-                // COnstruction des arbres à partir du fichier .csv
+                // COnstruction des arbres ï¿½ partir du fichier .csv
                 Arbre a = new Arbre( idBase, typeEmplacement, domanialite, arrondissement, complementAdresse, adresse, idEmplacement,
                 	libelleFrancais, genre, espece, varieteOuCultivar, circonferenceEnCm, hauteurEnM, stadeDeveloppement, remarquable,
                 	geographicalPoint2D );
         
-                municipalite.ajouterNouvelArbre(a);
+                municipalite.ajouterArbre(a);
                 
                 
                 	
