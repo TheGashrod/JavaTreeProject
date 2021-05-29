@@ -51,22 +51,29 @@ public class Arbre {
 	@Override
 	public String toString() {
 		String s =
-        		idBase + ";" +
+        		"[ Id :" + idBase + ";" +
         		typeEmplacement + ";" +
-        		domanialite + ";" +
+        		domanialite + "; \n" +
+        		"\t(Adresse : " +
         		arrondissement + ";" +
         		complementAdresse + ";" +
         		adresse + ";" +
         		idEmplacement + ";" +
+        		") \n" +
+        		"\t(Caractéristiques : " +
         		libelleFrancais + ";" +
         		genre + ";" +
         		espece + ";" +
         		varieteOuCultivar + ";" +
+        		" Circonference en cm :" +
         		circonferenceEnCm + ";" +
+        		" Hauteur en m :" +
         		hauteurEnM + ";" +
         		stadeDeveloppement + ";" +
-        		remarquable + ";" +
-        		"(" + geographicalPoint2D[0] + "," + geographicalPoint2D[1] + ")";
+        		"( Remarquable :" +
+        		remarquable + ")" + ";" +
+        		" Géolocalisation 2d :" +
+        		"(" + geographicalPoint2D[0] + "," + geographicalPoint2D[1] + " ) ]\n";
 		return s;
 	}
 
