@@ -4,6 +4,7 @@ import java.io.File;
 
 import et3.java.projet.association.*;
 import et3.java.projet.data.FileReader;
+import et3.java.projet.municipalite.Arbre;
 import et3.java.projet.municipalite.Municipalite;
 import et3.java.projet.outils.*;
 
@@ -38,12 +39,24 @@ public class Main
 		
 		
 		//test que municipalite contient bien une liste avec tous les arbres
-		System.out.println(municipalite.listeArbretoString());
+//		System.out.println(municipalite.listeArbretoString());
 		
 		// test comparable date
 //		Date t1 = new Date(2000, 07, 12);
 //		Date t2 = new Date(2000, 07, 13);
-////		
+		
+		
+		
+// test Notification
+		Float[] f = {48.906433f , 2.3493621f};
+		Arbre arbre = new Arbre(911111187, "arbre", "domanialite", "ARRDT", "", "RUE ANDRE DANJON", 101001, "Noisetier de Byzance", "Corylus", "colurna","" ,
+				 85, 10, "Adulte", false, f);
+		System.out.println(arbre);
+		municipalite.ajouterNouvelArbre(arbre);		
+//		System.out.println(municipalite.getListeNotification());
+		
+		
+		
 //		System.out.println(t2.compareTo(t1));
 		
 //		

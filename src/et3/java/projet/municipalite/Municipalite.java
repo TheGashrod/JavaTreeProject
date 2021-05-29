@@ -27,23 +27,24 @@ public class Municipalite {
 	}
 	
 	
-	public void ajouterArbre(Arbre a) {
-		this.mapArbre.put(a.getIdBase(),a);
+	public void ajouterArbre(Arbre arbre) {
+		this.mapArbre.put(arbre.getIdBase(),arbre);
 		
 	}
 	
-	public void ajouterNouvelArbre(Arbre a) {
-		this.mapArbre.put(a.getIdBase(),a);
-		Notification notification = new Notification();
-		notification.setMessageNouvelArbre(notification.getMessageNouvelArbre()+a.toString());
-		this.listeNotification.add(notification);
+	public void ajouterNouvelArbre(Arbre arbre) {
+		this.mapArbre.put(arbre.getIdBase(),arbre);
+		this.listeNotification.add(new PlantationArbreNotification(arbre));
 	}
 	
-	public void supprimerArbre(Arbre a) {
-		this.mapArbre.remove(a.getIdBase());
-		Notification notification = new Notification();
-		notification.setMessageArbreSupprime(notification.getMessageArbreSupprime()+a.toString());
-		this.listeNotification.add(notification);
+	public void supprimerArbre(Arbre arbre) {
+		this.mapArbre.remove(arbre.getIdBase());
+		this.listeNotification.add(new AbattageArbreNotification(arbre));
+	}
+	
+	public void rendreRemarquable(Arbre arbre) {
+		this.mapArbre.get(arbre.getIdBase()).setRemarquable(true);
+		this.listeNotification.add(new EstRemarquableNotification(arbre));
 	}
 	
 	

@@ -171,7 +171,7 @@ public class FileReader
                 	libelleFrancais, genre, espece, varieteOuCultivar, circonferenceEnCm, hauteurEnM, stadeDeveloppement, remarquable,
                 	geographicalPoint2D );
         
-                municipalite.ajouterNouvelArbre(a);
+                municipalite.ajouterArbre(a);
                 
                 
                 	
