@@ -37,11 +37,20 @@ public class Main {
 		Association association = new Association();
 		
 		association.insciptionMembre(new Membre("Doe", "John", "1 rue du bois, Paris", false, new Date(1998, 02, 12)));
+		association.insciptionMembre(new Membre("Doe", "Jane", "1 rue du bois, Paris", false, new Date(1999, 07, 03)));
+		association.insciptionMembre(new Membre("Smith", "Paul", "24 avenue de la coline, Bordeaux", false, new Date(2000, 05, 29)));
 		
-		association.getMembres().get(0).payerCotisation(2021);
 		
-		System.out.println(association.livreComptableToString());
+		// Tous les membres payent leur cotisation
+		for (Membre membre : association.getMembres()) {
+			membre.payerCotisation(2021);
+		}
+		
+		// Est ce que ce membre a payé sa cotisation ?
+		
+		
+		System.out.println(association.genererRapportActivite());
 		
 	}
-
+	
 }

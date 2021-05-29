@@ -3,49 +3,33 @@ package et3.java.projet.association;
 import java.util.ArrayList;
 import java.util.Date;
 
+import et3.java.projet.comptabilite.EcritureComptable;
+import et3.java.projet.comptabilite.LivreComptable;
+
 public class Association {
 	
 	private static final double MONTANT_COTISATION = 30;
 
-	/**
-	 * Historique des écritures comptables
-	 */
-	ArrayList<EcritureComptable> livreComptable;
+	LivreComptable livreComptable;
 	
 	ArrayList<Membre> membres;
 	
 	static void finExerciceBudgetaire() {}
 	
 	private static void constituerListeArbresRemarquables() {}
-	private static void genererRapportActivite() {}
+	public String genererRapportActivite() {
+		return this.livreComptable.toString();
+	}
 	private static void envoyerDemandesFinancement() {}
 
 	/**
 	 * Crée une association
 	 */
 	public Association() {
-		this.livreComptable = new ArrayList<EcritureComptable>();
+		this.livreComptable = new LivreComptable();
 		this.membres = new ArrayList<Membre>();
 	}
 	
-	
-	/** Ajoute une écriture comptable à l'historique des écritures comptables
-	 * @param ecritureComptable
-	 */
-	public void ajouterEcritureComptable(EcritureComptable ecritureComptable){
-		this.livreComptable.add(ecritureComptable);
-	}
-	
-	/**
-	 * Retourne une chaine de caractères correspondant à l'historique des écritures comptables
-	 */
-	public String livreComptableToString() {
-		String livreComptableString="";
-		for (EcritureComptable ecritureComptable : livreComptable) {
-			livreComptableString+=ecritureComptable+"\n";
-		}
-		return livreComptableString;
-	}
 	
 	public void insciptionMembre(Membre membre) {
 		this.membres.add(membre);
@@ -66,7 +50,7 @@ public class Association {
 	 * @param annee
 	 */
 	public void payerCotisation(Membre membre, int annee) {
-		this.ajouterEcritureComptable(new EcritureComptable(new Cotisation(annee), membre, new Date(), MONTANT_COTISATION));
+		this.livreComptable.ajouterEcritureComptable(new EcritureComptable(new Cotisation(annee), membre, new Date(), MONTANT_COTISATION));
 	}
 
 }

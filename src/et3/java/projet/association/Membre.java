@@ -3,6 +3,7 @@ package et3.java.projet.association;
 import java.util.ArrayList;
 import java.util.Date;
 
+import et3.java.projet.comptabilite.Compte;
 import et3.java.projet.municipalite.Arbre;
 
 public class Membre extends Compte {
@@ -61,8 +62,18 @@ public class Membre extends Compte {
 	public void setAssociation(Association association) {
 		this.association = association;
 	}
-
-
+	
+	
+	/** Est-ce que la cotisation du membre est payée pour l'annee demandée
+	 * @param annee
+	 * @return true si la cotisation est payée, false sinon
+	 */
+	public boolean isCotisationPayee(int annee) {
+		
+//		this.getAssociation().
+		
+		return true;
+	}
 
 	public void payerCotisation(int annee) {
 		association.payerCotisation(this, annee);

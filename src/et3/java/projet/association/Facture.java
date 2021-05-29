@@ -1,5 +1,7 @@
 package et3.java.projet.association;
 
+import et3.java.projet.comptabilite.Evenement;
+
 public class Facture extends Evenement {
 
 	private int numero;

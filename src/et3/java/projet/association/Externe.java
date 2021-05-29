@@ -1,5 +1,7 @@
 package et3.java.projet.association;
 
+import et3.java.projet.comptabilite.Compte;
+
 public class Externe extends Compte {
 	
 	private String designation;

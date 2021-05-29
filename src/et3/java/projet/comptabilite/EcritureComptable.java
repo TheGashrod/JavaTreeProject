@@ -1,4 +1,4 @@
-package et3.java.projet.association;
+package et3.java.projet.comptabilite;
 
 import java.util.Date;
 
