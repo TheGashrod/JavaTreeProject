@@ -32,5 +32,23 @@ public class LivreComptable {
 		return livreComptableString;
 	}	
 	
+	public LivreComptable getLivreByCompte(Compte compte) {
+		LivreComptable livre = new LivreComptable();
+		for (EcritureComptable ecritureComptable : historiqueEcritures) {
+			if(ecritureComptable.getCompte()==compte) {
+				livre.ajouterEcritureComptable(ecritureComptable);
+			}
+		}
+		return livre;
+	}
+
+	/** Obtenir le/la historiqueEcritures
+	 * @return le/la historiqueEcritures
+	 */
+	public ArrayList<EcritureComptable> getHistoriqueEcritures() {
+		return historiqueEcritures;
+	}
+	
+	
 	
 }

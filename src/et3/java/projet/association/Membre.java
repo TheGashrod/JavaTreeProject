@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import et3.java.projet.comptabilite.Compte;
+import et3.java.projet.comptabilite.EcritureComptable;
+import et3.java.projet.comptabilite.LivreComptable;
 import et3.java.projet.municipalite.Arbre;
 
 public class Membre extends Compte {
@@ -70,13 +72,28 @@ public class Membre extends Compte {
 	 */
 	public boolean isCotisationPayee(int annee) {
 		
-//		this.getAssociation().
+		LivreComptable livreMembre = this.getHistorique();
 		
-		return true;
+		for (EcritureComptable ecritureComptable : livreMembre.getHistoriqueEcritures()) {
+			if (ecritureComptable.getEvenement() instanceof Cotisation) {
+				Cotisation cotisationCourante = (Cotisation) ecritureComptable.getEvenement();
+				if (cotisationCourante.getAnnee() == annee) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+	
+	public LivreComptable getHistorique() {
+		return this.getAssociation().getLivreComptable().getLivreByCompte(this);
 	}
 
 	public void payerCotisation(int annee) {
-		association.payerCotisation(this, annee);
+		if(!this.isCotisationPayee(annee)) {
+			association.payerCotisation(this, annee);
+		}
 	}
 	
 	public void nominerArbre(Arbre arbre) {}

@@ -38,6 +38,13 @@ public class Association {
 	
 	
 	
+	/** Obtenir le/la livreComptable
+	 * @return le/la livreComptable
+	 */
+	public LivreComptable getLivreComptable() {
+		return livreComptable;
+	}
+
 	/** Obtenir le/la membres
 	 * @return le/la membres
 	 */

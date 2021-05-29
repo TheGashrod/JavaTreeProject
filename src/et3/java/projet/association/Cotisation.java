@@ -18,6 +18,13 @@ public class Cotisation extends Evenement {
 	public String toString() {
 		return "Cotisation [annee=" + annee + "]";
 	}
+
+	/** Obtenir le/la annee
+	 * @return le/la annee
+	 */
+	public int getAnnee() {
+		return annee;
+	}
 	
 	
 

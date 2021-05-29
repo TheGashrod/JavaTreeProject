@@ -3,6 +3,7 @@ package et3.java.projet.tests;
 import java.util.Date;
 
 import et3.java.projet.association.*;
+import et3.java.projet.comptabilite.LivreComptable;
 import et3.java.projet.municipalite.*;
 import et3.java.projet.data.*;
 
@@ -36,7 +37,9 @@ public class Main {
 		
 		Association association = new Association();
 		
-		association.insciptionMembre(new Membre("Doe", "John", "1 rue du bois, Paris", false, new Date(1998, 02, 12)));
+		Membre membre1 = new Membre("Doe", "John", "1 rue du bois, Paris", false, new Date(1998, 02, 12));
+		
+		association.insciptionMembre(membre1);
 		association.insciptionMembre(new Membre("Doe", "Jane", "1 rue du bois, Paris", false, new Date(1999, 07, 03)));
 		association.insciptionMembre(new Membre("Smith", "Paul", "24 avenue de la coline, Bordeaux", false, new Date(2000, 05, 29)));
 		
@@ -46,10 +49,17 @@ public class Main {
 			membre.payerCotisation(2021);
 		}
 		
-		// Est ce que ce membre a payé sa cotisation ?
+		// Vérifier que le membre a bien payé sa cotisation
+		System.out.println(membre1.isCotisationPayee(2020));
+		membre1.payerCotisation(2020);
+		System.out.println(membre1.isCotisationPayee(2020));
+		
+		// Afficher l'historique des transactions impliquant le membre
+		LivreComptable livreMembre1 = membre1.getHistorique();
+		System.out.println(livreMembre1);
 		
 		
-		System.out.println(association.genererRapportActivite());
+		//System.out.println(association.genererRapportActivite());
 		
 	}
 	
