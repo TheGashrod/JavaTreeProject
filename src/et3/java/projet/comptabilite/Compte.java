@@ -3,7 +3,7 @@ package et3.java.projet.comptabilite;
 import et3.java.projet.association.Association;
 import et3.java.projet.association.Externe;
 import et3.java.projet.association.Membre;
-import et3.java.projet.association.TypeDonateur;
+import et3.java.projet.association.TypeCompteExterne;
 import et3.java.projet.outils.Date;
 
 public abstract class Compte {
@@ -61,7 +61,7 @@ public abstract class Compte {
 	 */
 	public void anonymisationCompte() throws Exception {
 		// Anonymisation des Ecritures Comptables liées au compte
-		Compte compteAnonyme = new Externe("Compte supprimé : id original="+this.getId(), "", new TypeDonateur("", false));
+		Compte compteAnonyme = new Externe("Compte supprimé : id original="+this.getId(), "", new TypeCompteExterne("", false));
 		
 		LivreComptable historiqueMembre  = this.getAssociation().getLivreComptable().getLivreByCompte(this);
 		

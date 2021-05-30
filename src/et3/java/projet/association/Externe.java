@@ -6,14 +6,14 @@ public class Externe extends Compte {
 	
 	private String designation;
 	private String adresse;
-	private TypeDonateur typeDonateur;
+	private TypeCompteExterne typeDonateur;
 
 	/** Crée un compte externe
 	 * @param designation
 	 * @param adresse
 	 * @param typeDonateur
 	 */
-	public Externe(String designation, String adresse, TypeDonateur typeDonateur) {
+	public Externe(String designation, String adresse, TypeCompteExterne typeDonateur) {
 		super();
 		this.designation = designation;
 		this.adresse = adresse;

@@ -82,7 +82,7 @@ public class Main
 
 //		Association association = new Association();
 //		
-//		association.ajouterEcritureComptable(new EcritureComptable(new Facture(1234), new Externe("Mairie 14ème", "75014", new TypeDonateur("Mairie", true)), "27/05/2021", +12.5));
+//		association.ajouterEcritureComptable(new EcritureComptable(new Facture(1234), new Externe("Mairie 14ème", "75014", new TypeCompteExterne("Mairie", true)), "27/05/2021", +12.5));
 //		
 //		System.out.println(association.livreComptableToString());
 		

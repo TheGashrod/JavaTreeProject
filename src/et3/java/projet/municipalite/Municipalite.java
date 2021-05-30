@@ -1,8 +1,15 @@
 package et3.java.projet.municipalite;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import et3.java.projet.association.Association;
 import et3.java.projet.association.Visite;
@@ -137,9 +144,35 @@ public class Municipalite {
 		for (Arbre arbre : arbresRemarquables) {
 			
 			ArrayList<Visite> visites = association.getVisitesByArbre(arbre);
-			dateDerniereVisiteParArbre.put(arbre, visites.get(visites.size()-1).getDate());
+			
+			Date derniereVisite;
+			
+			if (!visites.isEmpty()) {
+				derniereVisite = visites.get(visites.size()-1).getDate();
+			}
+			else {
+				derniereVisite = new Date(1970,1,1);
+			}
+			
+			dateDerniereVisiteParArbre.put(arbre, derniereVisite);
 		}
 		
+		List<Entry<Arbre,Date>> listeDateDerniereVisiteParArbre = new LinkedList<Entry<Arbre,Date>>(dateDerniereVisiteParArbre.entrySet());
+		
+		// Trier les arbre par visites par ordre chronologique
+		Collections.sort(listeDateDerniereVisiteParArbre, new Comparator<Entry<Arbre,Date>>() {
+			@Override
+			public int compare(Entry<Arbre, Date> o1, Entry<Arbre, Date> o2) {
+				return o1.getValue().compareTo(o2.getValue());
+			}
+		});
+		
+		HashMap<Arbre, Date> dateDerniereVisiteParArbreTriee = new LinkedHashMap<Arbre, Date>();  
+		for (Iterator<Entry<Arbre,Date>> it = listeDateDerniereVisiteParArbre.iterator(); it.hasNext();)   
+		{  
+			Map.Entry<Arbre, Date> entry = (Map.Entry<Arbre, Date>) it.next();  
+			dateDerniereVisiteParArbreTriee.put(entry.getKey(), entry.getValue());  
+		}   
 		return arbresRemarquables;
 	}
 

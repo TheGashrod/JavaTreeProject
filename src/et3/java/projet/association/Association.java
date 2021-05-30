@@ -112,7 +112,7 @@ public class Association {
 	}
 	
 	public String genererRapportActivite() {
-		return this.livreComptable.toString();
+		return this.livreComptable.toString()+"\n Solde : "+this.getSolde();
 	}
 	
 	/** Vérifier les cotisation de chaque membre pour l'annee demandée, si elle n'est pas payée, exclure le membre
@@ -138,7 +138,7 @@ public class Association {
 		
 		// Pour chaque Compte Externe ayant fait une donation à l'association
 		for(EcritureComptable ecritureComptable : this.getLivreComptable().getHistoriqueEcritures()) {
-			if(ecritureComptable.getCompte() instanceof Externe) {
+			if(ecritureComptable.getCompte() instanceof Externe & ecritureComptable.getSomme() > 0) {
 				Externe donateur = (Externe) ecritureComptable.getCompte();
 				// on ajoute une demande de financement (
 				// comme on stocke les demandes dans une HashMap avec en clé le Compte Externe : une seule demande est conservée pour chaque Compte Externe
@@ -193,11 +193,11 @@ public class Association {
 	 * @throws Exception Si l'externe est d�j� inscrit ou n'a pas pu �tre inscrit
 	 */
 	public void inscriptionExterne(Externe externe) throws Exception {
-		if (this.membres.get(externe.getId()) == null) {
+		if (this.externes.get(externe.getId()) != null) {
 			throw new Exception("L'externe est d�j� inscrit");
 		}
 		this.externes.put(externe.getId(), externe);
-		if (this.membres.get(externe.getId()) != null) {
+		if (this.externes.get(externe.getId()) == null) {
 			throw new Exception("L'externe n'a pas �t� inscrit");
 		}
 		externe.setAssociation(this);
@@ -208,7 +208,7 @@ public class Association {
 	 * @throws Exception Si l'externe n'est pas inscrit ou n'a pas pu �tre desinscrit
 	 */
 	public void desinscriptionExterne(Externe externe) throws Exception {
-		if (this.membres.get(externe.getId()) == null) {
+		if (this.externes.get(externe.getId()) == null) {
 			throw new Exception("L'externe n'est pas inscrit");
 		}
 		
@@ -390,5 +390,21 @@ public class Association {
 		Membre membreVisite = this.visites.get(visite);
 		this.getLivreComptable().ajouterEcritureComptable(new EcritureComptable(visite, membreVisite, new Date(), -MONTANT_DEFRAIEMENT_VISITE), true);
 	}
+
+	/** Obtenir le/la externes
+	 * @return le/la externes
+	 */
+	public HashMap<Integer, Externe> getExternes() {
+		return externes;
+	}
+
+	/** Obtenir le/la visites
+	 * @return le/la visites
+	 */
+	public HashMap<Visite, Membre> getVisites() {
+		return visites;
+	}
+	
+	
 
 }
