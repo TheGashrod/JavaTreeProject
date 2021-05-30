@@ -14,9 +14,15 @@ public class Visite extends Evenement {
 	/**
 	 * @param date
 	 * @param arbre
+	 * @throws Exception si l'arbre n'est pas remarquable
 	 */
-	public Visite(Date date, Arbre arbre) {
+	public Visite(Date date, Arbre arbre) throws Exception {
 		super();
+		
+		if(!arbre.isRemarquable()) {
+			throw new Exception("L'arbre n'est pas remarquable.");
+		}
+		
 		this.date = date;
 		this.arbre = arbre;
 	}
@@ -28,11 +34,19 @@ public class Visite extends Evenement {
 		return compteRendu;
 	}
 
-	/** Définition de compteRendu
-	 * @param compteRendu le/la compteRendu à définir
+	/** Définition du compteRendu de la visite et défrayer le membre si la visite n'a pas déjà été défrayée
+	 * @param compteRendu le compteRendu à définir
 	 */
 	public void setCompteRendu(String compteRendu) {
-		this.compteRendu = compteRendu;
+		this.compteRendu=compteRendu;
+		
+		if(!(this.getAssociation().isDefrayee(this))) {
+			try {
+				this.getAssociation().defrayerMembrePourVisite(this);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/** Obtenir le/la date
@@ -68,10 +82,12 @@ public class Visite extends Evenement {
 	 */
 	@Override
 	public String toString() {
-		return "Visite [date=" + date + ", compteRendu=" + compteRendu + ", arbre=" + arbre + ", association="
-				+ association + "]";
+		return "Visite [date=" + date + ", compteRendu=" + compteRendu + ", arbre=" + arbre + "]";
 	}
 	
+	public String toStringComptabilite() {
+		return "Visite [id="+this.getId()+", date=" + date + ", arbre=" + arbre.getIdBase() + "]";
+	}
 	
 	
 }

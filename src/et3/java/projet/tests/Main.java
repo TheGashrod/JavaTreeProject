@@ -105,22 +105,29 @@ public class Main {
 		
 		System.out.println(association.getListePropositionClassificationRemarquable());
 		
+		
+		System.out.println(municipalite.getArbresRemarquables());
+		
 		try {
-			association.programmerVisite(new Visite(new Date(2021, 5, 28), municipalite.getArbre(227788)), membre3);
+			association.programmerVisite(new Visite(new Date(2021, 5, 28), municipalite.getArbre(112503)), membre3);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			association.programmerVisite(new Visite(new Date(2021, 5, 12), municipalite.getArbre(227788)), membre3);
+			association.programmerVisite(new Visite(new Date(2021, 5, 12), municipalite.getArbre(112503)), membre3);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		System.out.println(association.getVisitesByArbre(municipalite.getArbre(227788)));
+		System.out.println(association.getVisitesByArbre(municipalite.getArbre(112503)));
+		
+		Visite visite = association.getVisitesByArbre(municipalite.getArbre(112503)).get(0);
+		visite.setCompteRendu("Arbre en bon état génral");
+		visite.setCompteRendu("Arbre en bon état général"); // Si le compte rendu est défini plusieurs fois la visite n'est défrayée qu'une seule fois
 		
 //		System.out.println(municipalite.getArbresRemarquables());
-		//System.out.println(association.genererRapportActivite());
+		System.out.println(association.genererRapportActivite());
 		
 	}
 	

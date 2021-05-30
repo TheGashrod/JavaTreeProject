@@ -45,6 +45,20 @@ public class LivreComptable {
 		}
 		return livre;
 	}
+	
+	/** Obtenir l'historique des EcritureComptable liées à l'évenement demandé
+	 * @param evenement
+	 * @return LivreComptable contenant les EcritureComptable correspondantes
+	 */
+	public LivreComptable getLivreByEvenement(Evenement evenement) {
+		LivreComptable livre = new LivreComptable();
+		for (EcritureComptable ecritureComptable : historiqueEcritures) {
+			if(ecritureComptable.getEvenement()==evenement) {
+				livre.ajouterEcritureComptable(ecritureComptable);
+			}
+		}
+		return livre;
+	}
 
 	/** Obtenir le/la historiqueEcritures
 	 * @return le/la historiqueEcritures

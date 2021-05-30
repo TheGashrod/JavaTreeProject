@@ -9,8 +9,9 @@ ___
 TODO : 
 
 [x] Ajout d’une programmation de visite d’arbre 
-    [ ] (remarquable) et réception d’un compte-rendu pour une visite programmée.
-    [ ] nombre maximum de visites par an par membre )
+    [x] (remarquable)
+    [x] réception d’un compte-rendu pour une visite programmée.
+    [x] nombre maximum de visites par an par membre )
     [x] liste des arbres remarquables par ancienneté de leur dernière visite
 
 [ ] Fin exercice budgétaire

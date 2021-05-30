@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import et3.java.projet.comptabilite.EcritureComptable;
@@ -19,6 +20,10 @@ import et3.java.projet.outils.Date;
 public class Association {
 	
 	private static final double MONTANT_COTISATION = 30;
+
+	private static final int NB_VISITES_MAX_PAR_MEMBRE_PAR_AN = 5;
+
+	private static final double MONTANT_DEFRAIEMENT_VISITE = 5;
 
 	private LivreComptable livreComptable;
 	
@@ -173,6 +178,18 @@ public class Association {
 		return membres;
 	}
 	
+	/** Obtenir le membre avec l'id demandé
+	 * @param id
+	 * @return
+	 * @throws Exception si le membre n'est pas trouvé
+	 */
+	public Membre getMembre(int id) throws Exception {
+		if(this.getMembres().get(id)==null) {
+			throw new Exception("Membre non trouvé");
+		}
+		return this.getMembres().get(id);
+	}
+	
 	
 	/** Obtenir le/la livreComptable
 	 * @return le/la livreComptable
@@ -204,6 +221,10 @@ public class Association {
 	 */
 	public void programmerVisite(Visite visite, Membre membre) throws Exception {
 		
+		if(this.getVisitesByMembre(membre, true).size()>=NB_VISITES_MAX_PAR_MEMBRE_PAR_AN) {
+			throw new Exception("Le membre a atteint le nombre de visite maximale par membre et par an.");
+		}
+		
 		ArrayList<Visite> visitesArbre = this.getVisitesByArbre(visite.getArbre());
 		Date aujourdhui = new Date();
 		
@@ -231,14 +252,83 @@ public class Association {
 		}
 				
 		// Trier les visites par ordre chronologique
-		Collections.sort(visitesArbre, new Comparator<Visite>() {
+		sortVisites(visitesArbre, true);
+		
+		return visitesArbre;
+	}
+	
+	/** Trier les visites par ordre chronologique ou inversement chronologique
+	 * @param chronologique = true : chronologique, false : inversement chronologique
+	 * @return
+	 */
+	public static ArrayList<Visite> sortVisites(ArrayList<Visite> visitesATrier, boolean chronologique){
+		// Trier les visites par ordre chronologique
+		Collections.sort(visitesATrier, new Comparator<Visite>() {
 			@Override
 			public int compare(Visite o1, Visite o2) {
-				return o1.getDate().compareTo(o2.getDate());
+				if (chronologique) {
+					return o1.getDate().compareTo(o2.getDate());
+				}
+				else {
+					return -(o1.getDate().compareTo(o2.getDate()));
+				}
 			}
 		});
 		
-		return visitesArbre;
+		return visitesATrier;
+	}
+	
+	/**Obtenir la liste des visites du membre demandé triée par ordre chronologique
+	 * @param arbre
+	 * @param membre
+	 * @param anneeCourante = true : uniquement les visites de l'année en cours
+	 * @return la liste des visites
+	 * @throws Exception si le membre n'est pas dans l'association
+	 */
+	public ArrayList<Visite> getVisitesByMembre(Membre membre, boolean anneeCourante) throws Exception{
+		
+		// Tester si le membre fait bien partie de l'association
+		this.getMembre(membre.getId());
+		
+		ArrayList<Visite> visitesMembre = new ArrayList<Visite>();
+		Date debutAnnee = new Date();
+		debutAnnee.setJour(1);
+		debutAnnee.setMois(1);
+		
+		// Récupérer les visites du membre
+		for(Entry<Visite, Membre> mapentry : this.visites.entrySet()) {
+			if(anneeCourante) {
+				if(mapentry.getKey().getDate().compareTo(debutAnnee)>0) {
+					visitesMembre.add(mapentry.getKey());
+				}
+			}
+			else {
+				visitesMembre.add(mapentry.getKey());
+			}
+		}
+		
+		// Trier les visites par ordre chronologique
+		sortVisites(visitesMembre, true);
+		
+		return visitesMembre;
+	}
+	
+	public boolean isDefrayee(Visite visite){
+		return !(this.getLivreComptable().getLivreByEvenement(visite).getHistoriqueEcritures().isEmpty());
+	}
+	
+	/** Défrayer le membre ayant programmé la visite
+	 * @param visite
+	 * @throws Exception si la visite a déjà été défrayée
+	 */
+	public void defrayerMembrePourVisite(Visite visite) throws Exception {
+		
+		if( this.isDefrayee(visite) ) {
+			throw new Exception("Cette visite a déjà été defrayée.");
+		}
+		
+		Membre membreVisite = this.visites.get(visite);
+		this.getLivreComptable().ajouterEcritureComptable(new EcritureComptable(visite, membreVisite, new Date(), -MONTANT_DEFRAIEMENT_VISITE));
 	}
 
 }
