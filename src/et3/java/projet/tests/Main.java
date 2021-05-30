@@ -75,28 +75,28 @@ public class Main {
 		// Nominations d'arbres par le membre
 		System.out.println(membre1.getListeNominations());
 		
-		membre1.nominerArbre(municipalite.getMapArbre().get(147441));
-		membre1.nominerArbre(municipalite.getMapArbre().get(131050));
-		membre1.nominerArbre(municipalite.getMapArbre().get(294889));
-		membre1.nominerArbre(municipalite.getMapArbre().get(245713));
-		membre1.nominerArbre(municipalite.getMapArbre().get(2031553));
+		membre1.nominerArbre(municipalite.getArbre(147441));
+		membre1.nominerArbre(municipalite.getArbre(131050));
+		membre1.nominerArbre(municipalite.getArbre(294889));
+		membre1.nominerArbre(municipalite.getArbre(245713));
+		membre1.nominerArbre(municipalite.getArbre(2031553));
 		
 		System.out.println(membre1.getListeNominations());
 		
 		// La nomination d'un 6ème arbre supprime le plus ancien choix
-		membre1.nominerArbre(municipalite.getMapArbre().get(212872));
+		membre1.nominerArbre(municipalite.getArbre(212872));
 		
-		membre2.nominerArbre(municipalite.getMapArbre().get(212872));
-		membre2.nominerArbre(municipalite.getMapArbre().get(294889));
-		membre3.nominerArbre(municipalite.getMapArbre().get(194396));
-		membre3.nominerArbre(municipalite.getMapArbre().get(213431));
-		membre3.nominerArbre(municipalite.getMapArbre().get(132034));
+		membre2.nominerArbre(municipalite.getArbre(212872));
+		membre2.nominerArbre(municipalite.getArbre(294889));
+		membre3.nominerArbre(municipalite.getArbre(194396));
+		membre3.nominerArbre(municipalite.getArbre(213431));
+		membre3.nominerArbre(municipalite.getArbre(132034));
 		
-		membre3.nominerArbre(municipalite.getMapArbre().get(212872));
-		membre3.nominerArbre(municipalite.getMapArbre().get(131050));
-		membre3.nominerArbre(municipalite.getMapArbre().get(194396));
-		membre3.nominerArbre(municipalite.getMapArbre().get(251653));
-		membre3.nominerArbre(municipalite.getMapArbre().get(227788));
+		membre3.nominerArbre(municipalite.getArbre(212872));
+		membre3.nominerArbre(municipalite.getArbre(131050));
+		membre3.nominerArbre(municipalite.getArbre(194396));
+		membre3.nominerArbre(municipalite.getArbre(251653));
+		membre3.nominerArbre(municipalite.getArbre(227788));
 		
 		
 		System.out.println(membre1.getListeNominations());
@@ -106,18 +106,20 @@ public class Main {
 		System.out.println(association.getListePropositionClassificationRemarquable());
 		
 		try {
-			association.programmerVisite(new Visite(new Date(2021, 5, 28), municipalite.getMapArbre().get(227788)), membre3);
+			association.programmerVisite(new Visite(new Date(2021, 5, 28), municipalite.getArbre(227788)), membre3);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		try {
-			association.programmerVisite(new Visite(new Date(2021, 5, 31), municipalite.getMapArbre().get(227788)), membre3);
+			association.programmerVisite(new Visite(new Date(2021, 5, 12), municipalite.getArbre(227788)), membre3);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		System.out.println(municipalite.getArbresRemarquables());
+		System.out.println(association.getVisitesByArbre(municipalite.getArbre(227788)));
+		
+//		System.out.println(municipalite.getArbresRemarquables());
 		//System.out.println(association.genererRapportActivite());
 		
 	}

@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import et3.java.projet.association.Association;
+import et3.java.projet.association.Visite;
+import et3.java.projet.outils.Date;
+
 public class Municipalite {
 	
 	private HashMap<Integer,Arbre> mapArbre = new  HashMap<Integer,Arbre>();
@@ -108,7 +112,7 @@ public class Municipalite {
 	}
 	
 	/** Obtenir la liste des arbres remarquables
-	 * @return
+	 * @return la liste des arbres
 	 */
 	public ArrayList<Arbre> getArbresRemarquables(){
 		ArrayList<Arbre> arbresRemarquables = new ArrayList<Arbre>();
@@ -117,6 +121,23 @@ public class Municipalite {
 			if(arbre.isRemarquable()) {
 				arbresRemarquables.add(arbre);
 			}
+		}
+		
+		return arbresRemarquables;
+	}
+	
+	/** Obtenir la liste des arbres remarquables triée par ancienneté de leur dernière visite.
+	 * @return la liste des arbres
+	 */
+	public ArrayList<Arbre> getArbresRemarquablesOrderByVisite(Association association){
+		ArrayList<Arbre> arbresRemarquables = this.getArbresRemarquables();
+		
+		HashMap<Arbre, Date> dateDerniereVisiteParArbre = new HashMap<Arbre, Date>();
+		
+		for (Arbre arbre : arbresRemarquables) {
+			
+			ArrayList<Visite> visites = association.getVisitesByArbre(arbre);
+			dateDerniereVisiteParArbre.put(arbre, visites.get(visites.size()-1).getDate());
 		}
 		
 		return arbresRemarquables;

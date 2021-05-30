@@ -11,10 +11,7 @@ TODO :
 [x] Ajout d’une programmation de visite d’arbre 
     [ ] (remarquable) et réception d’un compte-rendu pour une visite programmée.
     [ ] nombre maximum de visites par an par membre )
-    [ ] liste des arbres remarquables par ancienneté de leur dernière visite
-
-[ ] municipalité.getArbre(int id) avec exception arbre non trouvé
-  [ ] getArbresRemarquables
+    [x] liste des arbres remarquables par ancienneté de leur dernière visite
 
 [ ] Fin exercice budgétaire
 [ ] Vérifier cotisation des membres, sinon exclure ( quitter association )

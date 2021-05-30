@@ -218,7 +218,7 @@ public class Association {
 		visite.setAssociation(this);
 	}
 	
-	/** Obtenir la liste des visites de l'arbre demandé
+	/** Obtenir la liste des visites de l'arbre demandé triée par ordre chronologique
 	 * @param arbre
 	 * @return la liste des visites
 	 */
@@ -229,6 +229,15 @@ public class Association {
 				visitesArbre.add(visite);
 			}
 		}
+				
+		// Trier les visites par ordre chronologique
+		Collections.sort(visitesArbre, new Comparator<Visite>() {
+			@Override
+			public int compare(Visite o1, Visite o2) {
+				return o1.getDate().compareTo(o2.getDate());
+			}
+		});
+		
 		return visitesArbre;
 	}
 

@@ -62,5 +62,16 @@ public class Visite extends Evenement {
 	public Association getAssociation() {
 		return association;
 	}
-
+	
+	/**
+	 * Retourne une chaine de caractère décrivant la visite
+	 */
+	@Override
+	public String toString() {
+		return "Visite [date=" + date + ", compteRendu=" + compteRendu + ", arbre=" + arbre + ", association="
+				+ association + "]";
+	}
+	
+	
+	
 }
