@@ -20,6 +20,13 @@ public class Externe extends Compte {
 		this.typeDonateur = typeDonateur;
 	}
 	
+	/** Obtenir le/la designation
+	 * @return le/la designation
+	 */
+	public String getDesignation() {
+		return designation;
+	}
+
 	/**
 	 * Retourne une chaine de caractères correspondant à l'état de l'objet
 	 */

@@ -25,6 +25,8 @@ public class Association {
 
 	private static final double MONTANT_DEFRAIEMENT_VISITE = 5;
 
+	private static final String MESSAGE_DEMANDE_FINANCEMENT = "Bonjour, vous avez contribué au bon fonctionnement de notre association par le passé. \n Souhaitez vous renouveller votre donation cette année ?";
+
 	private LivreComptable livreComptable;
 	
 	private HashMap<Integer,Membre> membres = new  HashMap<Integer,Membre>();
@@ -83,8 +85,40 @@ public class Association {
 	public String genererRapportActivite() {
 		return this.livreComptable.toString();
 	}
-	private static void envoyerDemandesFinancement() {}
-
+	
+	/** Vérifier les cotisation de chaque membre pour l'annee demandée, si elle n'est pas payée, exclure le membre
+	 * @param annee
+	 */
+	private void supprimerMembresSansCotisation(int annee) {
+		for (Membre membre : this.getMembres().values()) {
+			if(membre.isCotisationPayee(annee)) {
+				try {
+					this.desinscriptionMembre(membre);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	/** Obtenir une liste de demandes de financement avec chaque donateur passé
+	 * @return la liste des demandes de financement
+	 */
+	private HashMap<Externe, String> envoyerDemandesFinancement() {
+		HashMap<Externe, String> demandesFinancement=new HashMap<Externe, String>();
+		
+		// Pour chaque Compte Externe ayant fait une donation à l'association
+		for(EcritureComptable ecritureComptable : this.getLivreComptable().getHistoriqueEcritures()) {
+			if(ecritureComptable.getCompte() instanceof Externe) {
+				Externe donateur = (Externe) ecritureComptable.getCompte();
+				// on ajoute une demande de financement (
+				// comme on stocke les demandes dans une HashMap avec en clé le Compte Externe : une seule demande est conservée pour chaque Compte Externe
+				demandesFinancement.put(donateur, donateur.getDesignation()+"\n" + MESSAGE_DEMANDE_FINANCEMENT);
+			}
+		}
+		return demandesFinancement;
+	}
+	
 	/**
 	 * Crée une association
 	 */

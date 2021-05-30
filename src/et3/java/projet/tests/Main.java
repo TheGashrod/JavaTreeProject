@@ -1,6 +1,7 @@
 package et3.java.projet.tests;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 
 import et3.java.projet.association.*;
@@ -129,6 +130,7 @@ public class Main {
 //		System.out.println(municipalite.getArbresRemarquables());
 		System.out.println(association.genererRapportActivite());
 		System.out.println(association.getSolde());
+		
 		
 	}
 	
