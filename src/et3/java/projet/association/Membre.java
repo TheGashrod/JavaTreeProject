@@ -96,14 +96,21 @@ public class Membre extends Compte {
 
 	/** Ajouter un arbre à la liste des nominations, si la liste contient déjà 5 arbres le plus ancien choix est retiré 
 	 * @param arbre
+	 * @throws Exception si l'arbre est déjà remarquable
 	 */
-	public void nominerArbre(Arbre arbre) {
-		if(!arbre.getRemarquable()) {
-			this.getListeNominations().addFirst(arbre);
-			if(this.getListeNominations().size() > 5) {
-				this.getListeNominations().removeLast();
-			}
+	public void nominerArbre(Arbre arbre) throws Exception {
+		
+		if(arbre.isRemarquable()) {
+			throw new Exception("L'arbre est déjà remarquable");
 		}
+		
+		this.getListeNominations().addFirst(arbre);
+		
+		// si la liste contient déjà 5 arbres le plus ancien choix est retiré 
+		if(this.getListeNominations().size() > 5) {
+			this.getListeNominations().removeLast();
+		}
+		
 	}
 
 

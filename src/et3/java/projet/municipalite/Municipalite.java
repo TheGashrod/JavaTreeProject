@@ -93,5 +93,33 @@ public class Municipalite {
 		this.listeNotification = listeNotification;
 	}
 	
+	
+	/** Obtenir l'arbre correspondant à l'id demandé
+	 * @param id
+	 * @return Arbre correspondant à l'id demandé
+	 * @throws Exception si aucun arbre n'est trouvé pour cet id
+	 */
+	public Arbre getArbre(int id) throws Exception {
+		if(!this.getMapArbre().containsKey(id)) {
+			throw new Exception("Il n'y a pas d'arbre avec cet id");
+		}
+		
+		return this.getMapArbre().get(id);
+	}
+	
+	/** Obtenir la liste des arbres remarquables
+	 * @return
+	 */
+	public ArrayList<Arbre> getArbresRemarquables(){
+		ArrayList<Arbre> arbresRemarquables = new ArrayList<Arbre>();
+		
+		for (Arbre arbre : this.getMapArbre().values()) {
+			if(arbre.isRemarquable()) {
+				arbresRemarquables.add(arbre);
+			}
+		}
+		
+		return arbresRemarquables;
+	}
 
 }

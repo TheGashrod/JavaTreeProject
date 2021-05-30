@@ -117,7 +117,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-		
+		System.out.println(municipalite.getArbresRemarquables());
 		//System.out.println(association.genererRapportActivite());
 		
 	}

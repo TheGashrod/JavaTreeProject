@@ -60,7 +60,7 @@ public class Arbre {
         		adresse + ";" +
         		idEmplacement + ";" +
         		") \n" +
-        		"\t(Caractéristiques : " +
+        		"\t(Caractï¿½ristiques : " +
         		libelleFrancais + ";" +
         		genre + ";" +
         		espece + ";" +
@@ -72,7 +72,7 @@ public class Arbre {
         		stadeDeveloppement + ";" +
         		"( Remarquable :" +
         		remarquable + ")" + ";" +
-        		" Géolocalisation 2d :" +
+        		" Gï¿½olocalisation 2d :" +
         		"(" + geographicalPoint2D[0] + "," + geographicalPoint2D[1] + " ) ]\n";
 		return s;
 	}
@@ -305,7 +305,7 @@ public class Arbre {
 	/** Obtenir le/la remarquable
 	 * @return le/la remarquable
 	 */
-	public Boolean getRemarquable() {
+	public Boolean isRemarquable() {
 		return remarquable;
 	}
 
