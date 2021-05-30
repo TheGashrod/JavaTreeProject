@@ -44,36 +44,63 @@ public class Association {
 // Membre :	
 	/** Inscription du membre dans l'association
 	 * @param membre Ã  inscrire
+	 * @throws Exception Si le membre est déjà inscrit ou n'a pas pu être inscrit
 	 */
-	public void inscriptionMembre(Membre membre) {
-//		this.membres.add(membre);
+	public void inscriptionMembre(Membre membre) throws Exception {
+		if (this.membres.get(membre.getId()) != null) {
+			throw new Exception("Le membre est déjà inscrit");
+		}
 		this.membres.put(membre.getId(), membre);
+		if (this.membres.get(membre.getId()) == null) {
+			throw new Exception("Le membre n'a pas été inscrit");
+		}
 		membre.setAssociation(this);
 	}
 	
 	
 	/** Desinscription du membre dans l'association
 	 * @param membre A desinscririre
+	 * @throws Exception Si le membre n'est pas inscrit ou n'a pas pu être desinscrit 
 	 */
-	public void desinscriptionMembre(Membre membre) {
+	public void desinscriptionMembre(Membre membre) throws Exception {
+		if (this.membres.get(membre.getId()) == null) {
+			throw new Exception("Le membre n'est pas inscrit");
+		}
 		this.membres.remove(membre.getId());
+		if (this.membres.get(membre.getId()) != null) {
+			throw new Exception("Le membre n'a pas été desinscrit");
+		}
 		membre.setAssociation(null);
 	}
 	
 // Externe :
 	/** Inscription externe
 	 * @param externe a inscrire
+	 * @throws Exception Si l'externe est déjà inscrit ou n'a pas pu être inscrit
 	 */
-	public void inscriptionExterne(Externe externe) {
+	public void inscriptionExterne(Externe externe) throws Exception {
+		if (this.membres.get(externe.getId()) == null) {
+			throw new Exception("L'externe est déjà inscrit");
+		}
 		this.externes.put(externe.getId(), externe);
+		if (this.membres.get(externe.getId()) != null) {
+			throw new Exception("L'externe n'a pas été inscrit");
+		}
 		externe.setAssociation(this);
 	}
 	
 	/** Desinscription externe
 	 * @param externe a desinscririre
+	 * @throws Exception Si l'externe n'est pas inscrit ou n'a pas pu être desinscrit
 	 */
-	public void desinscriptionExterne(Externe externe) {
+	public void desinscriptionExterne(Externe externe) throws Exception {
+		if (this.membres.get(externe.getId()) == null) {
+			throw new Exception("L'externe n'est pas inscrit");
+		}
 		this.externes.remove(externe.getId());
+		if (this.membres.get(externe.getId()) != null) {
+			throw new Exception("L'externe n'a pas été desinscrit");
+		}
 		externe.setAssociation(null);
 	}
 	

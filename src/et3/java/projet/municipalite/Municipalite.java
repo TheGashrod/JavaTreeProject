@@ -36,17 +36,28 @@ public class Municipalite {
 	
 	/**Plante l'arbre et envoye une notification de plantation
 	 * @param arbre planté
+	 * @throws Exception si l'arbre existe déjà ou n'a pas été ajouté
 	 */
-	public void planterNouvelArbre(Arbre arbre) {
+	public void planterNouvelArbre(Arbre arbre) throws Exception {
+		if (this.mapArbre.get(arbre.getIdBase()) != null) {
+			throw new Exception("L'arbre exite déjà");
+		}
 		this.mapArbre.put(arbre.getIdBase(),arbre);
+		if (this.mapArbre.get(arbre.getIdBase())== null) {
+			throw new Exception("Arbre non ajouté");
+		}
 		this.listeNotification.add(new Plantation(arbre));
 	}
 	
 	/** Abbat l'arbre et envoye une notification d'abattage
 	 * @param arbre abattu
+	 * @throws Exception L'arbre n'a pas été retiré
 	 */
-	public void abattreArbre(Arbre arbre) {
+	public void abattreArbre(Arbre arbre) throws Exception {
 		this.mapArbre.remove(arbre.getIdBase());
+		if (this.mapArbre.get(arbre.getIdBase()) != null) {
+			throw new Exception("Arbre non retiré");
+		}
 		this.listeNotification.add(new Abattage(arbre));
 	}
 	
@@ -87,7 +98,6 @@ public class Municipalite {
 	public void setListeNotification(ArrayList<Notification> listeNotification) {
 		this.listeNotification = listeNotification;
 	}
-
-
+	
 
 }
