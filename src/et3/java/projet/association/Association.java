@@ -1,7 +1,7 @@
 package et3.java.projet.association;
 
 import java.util.ArrayList;
-import java.util.Collection;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -20,11 +20,13 @@ public class Association {
 	
 	private static final double MONTANT_COTISATION = 30;
 
-	LivreComptable livreComptable;
+	private LivreComptable livreComptable;
 	
-	ArrayList<Membre> membres;
+	private HashMap<Integer,Membre> membres = new  HashMap<Integer,Membre>();
 	
-	HashMap<Visite, Membre> visites;
+	private HashMap<Integer,Externe> externes = new  HashMap<Integer,Externe>();
+	
+	private HashMap<Visite, Membre> visites;
 	
 	static void finExerciceBudgetaire() {}
 	
@@ -35,7 +37,7 @@ public class Association {
 		HashMap<Integer, Integer> votes = new HashMap<Integer, Integer>();
 		
 		// Compter les votes des membres
-		for (Membre membre : this.getMembres()) {
+		for (Membre membre : this.getMembres().values()) {
 			for (Arbre arbre : membre.getListeNominations()) {
 				if( votes.get(arbre.getIdBase()) == null ) {
 					votes.put(arbre.getIdBase(), 1);
@@ -62,7 +64,7 @@ public class Association {
 		); 
 		
 		// Garder uniquement les 5 arbres avec le plus de votes
-		Iterator iterator = votesListe.iterator();
+		Iterator<Entry<Integer, Integer>> iterator = votesListe.iterator();
 		ArrayList<Integer> listeIdPropositionArbres= new ArrayList<>();
 		for (int i=0; i<5 & iterator.hasNext(); i++) {
 			
@@ -83,18 +85,86 @@ public class Association {
 	 */
 	public Association() {
 		this.livreComptable = new LivreComptable();
-		this.membres = new ArrayList<Membre>();
-		
+
 		this.visites = new HashMap<Visite, Membre>();
+
+		this.membres = new HashMap<Integer,Membre>();
 	}
 	
+	
+// Inscription / Desinscription Membre/Externe :	
+	
+// Membre :	
 	/** Inscription du membre dans l'association
 	 * @param membre à inscrire
+	 * @throws Exception Si le membre est d�j� inscrit ou n'a pas pu �tre inscrit
 	 */
-	public void inscriptionMembre(Membre membre) {
-		this.membres.add(membre);
+	public void inscriptionMembre(Membre membre) throws Exception {
+		if (this.membres.get(membre.getId()) != null) {
+			throw new Exception("Le membre est d�j� inscrit");
+		}
+		this.membres.put(membre.getId(), membre);
+		if (this.membres.get(membre.getId()) == null) {
+			throw new Exception("Le membre n'a pas �t� inscrit");
+		}
 		membre.setAssociation(this);
 	}
+	
+	
+	/** Desinscription du membre dans l'association
+	 * @param membre A desinscririre
+	 * @throws Exception Si le membre n'est pas inscrit ou n'a pas pu �tre desinscrit 
+	 */
+	public void desinscriptionMembre(Membre membre) throws Exception {
+		if (this.membres.get(membre.getId()) == null) {
+			throw new Exception("Le membre n'est pas inscrit");
+		}
+		this.membres.remove(membre.getId());
+		if (this.membres.get(membre.getId()) != null) {
+			throw new Exception("Le membre n'a pas �t� desinscrit");
+		}
+		membre.setAssociation(null);
+	}
+	
+// Externe :
+	/** Inscription externe
+	 * @param externe a inscrire
+	 * @throws Exception Si l'externe est d�j� inscrit ou n'a pas pu �tre inscrit
+	 */
+	public void inscriptionExterne(Externe externe) throws Exception {
+		if (this.membres.get(externe.getId()) == null) {
+			throw new Exception("L'externe est d�j� inscrit");
+		}
+		this.externes.put(externe.getId(), externe);
+		if (this.membres.get(externe.getId()) != null) {
+			throw new Exception("L'externe n'a pas �t� inscrit");
+		}
+		externe.setAssociation(this);
+	}
+	
+	/** Desinscription externe
+	 * @param externe a desinscririre
+	 * @throws Exception Si l'externe n'est pas inscrit ou n'a pas pu �tre desinscrit
+	 */
+	public void desinscriptionExterne(Externe externe) throws Exception {
+		if (this.membres.get(externe.getId()) == null) {
+			throw new Exception("L'externe n'est pas inscrit");
+		}
+		this.externes.remove(externe.getId());
+		if (this.membres.get(externe.getId()) != null) {
+			throw new Exception("L'externe n'a pas �t� desinscrit");
+		}
+		externe.setAssociation(null);
+	}
+	
+	
+	/** Obtenir le/la liste des membres
+	 * @return le/la liste des membres
+	 */
+	public HashMap<Integer,Membre> getMembres() {
+		return membres;
+	}
+	
 	
 	/** Obtenir le/la livreComptable
 	 * @return le/la livreComptable
@@ -103,12 +173,6 @@ public class Association {
 		return livreComptable;
 	}
 
-	/** Obtenir le/la membres
-	 * @return le/la membres
-	 */
-	public ArrayList<Membre> getMembres() {
-		return membres;
-	}
 
 	/** Enregistrer le paiement de la cotisation du membre pour l'annee demandée
 	 * @param membre

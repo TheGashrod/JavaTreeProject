@@ -1,6 +1,7 @@
 package et3.java.projet.tests;
 
 import java.io.File;
+import java.util.Map;
 
 import et3.java.projet.association.*;
 import et3.java.projet.comptabilite.LivreComptable;
@@ -10,7 +11,7 @@ import et3.java.projet.outils.*;
 
 public class Main {
 
-	public static void main(String[] args) 
+	public static void main(String[] args) throws Exception 
 	{		
 		Municipalite municipalite = new Municipalite();
 		
@@ -47,6 +48,7 @@ public class Main {
 		Membre membre1 = new Membre("Doe", "John", "1 rue du bois, Paris", true, new Date(1998, 02, 12));
 		Membre membre2 = new Membre("Doe", "Jane", "1 rue du bois, Paris", false, new Date(1999, 07, 03));
 		Membre membre3 = new Membre("Smith", "Paul", "24 avenue de la coline, Bordeaux", false, new Date(2000, 05, 29));
+
 		
 		// Inscription de membres 
 		association.inscriptionMembre(membre1);
@@ -55,9 +57,11 @@ public class Main {
 		
 		
 		// Tous les membres payent leur cotisation
-		for (Membre membre : association.getMembres()) {
+		for (Membre membre : association.getMembres().values()) {
 			membre.payerCotisation(2021);
 		}
+		
+		
 		
 		// Vérifier que le membre a bien payé sa cotisation
 		System.out.println(membre1.isCotisationPayee(2020));
@@ -104,14 +108,12 @@ public class Main {
 		try {
 			association.programmerVisite(new Visite(new Date(2021, 5, 28), municipalite.getMapArbre().get(227788)), membre3);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		try {
 			association.programmerVisite(new Visite(new Date(2021, 5, 31), municipalite.getMapArbre().get(227788)), membre3);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

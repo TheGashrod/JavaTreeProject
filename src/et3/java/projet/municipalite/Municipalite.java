@@ -4,50 +4,66 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-//import et3.java.projet.data.Afficher;
-
 public class Municipalite {
 	
-//    private ArrayList<Arbre> listeArbre = new ArrayList<Arbre>();
 	private HashMap<Integer,Arbre> mapArbre = new  HashMap<Integer,Arbre>();
 	private ArrayList<Notification> listeNotification = new ArrayList<Notification>();
-	
-	
-	
+		
 	/**
-	 * @return la liste des arbres stoqués dans la HashMap "mapArbre" sous forme de String
+	 * @return la liste des arbres stoquï¿½s dans la HashMap "mapArbre" sous forme de String
 	 */
 	public String listeArbretoString() {
 		String s = "";
 
-		for(Map.Entry mapentry : mapArbre.entrySet()) {
+		for(Map.Entry<Integer, Arbre> mapentry : mapArbre.entrySet()) {
         	s += mapentry.getValue().toString() + "\n" ;
         }
 		return s;
 	}
-	
-	
+		
+	/** Cette fonction est utilisï¿½e pour constituer la base de donnï¿½es des arbres de la municipalitï¿½ ï¿½ partir du fichier csv,
+	 * ensuite on utilisera PlanterNouvelAbrbre  pour ajouter un arbre et envoyer une notification 
+	 * @param arbre
+	 */
 	public void ajouterArbre(Arbre arbre) {
 		this.mapArbre.put(arbre.getIdBase(),arbre);
 		
 	}
 	
-	public void ajouterNouvelArbre(Arbre arbre) {
+	/**Plante l'arbre et envoye une notification de plantation
+	 * @param arbre plantï¿½
+	 * @throws Exception si l'arbre existe dï¿½jï¿½ ou n'a pas ï¿½tï¿½ ajoutï¿½
+	 */
+	public void planterNouvelArbre(Arbre arbre) throws Exception {
+		if (this.mapArbre.get(arbre.getIdBase()) != null) {
+			throw new Exception("L'arbre exite dï¿½jï¿½");
+		}
 		this.mapArbre.put(arbre.getIdBase(),arbre);
-		this.listeNotification.add(new PlantationArbreNotification(arbre));
+		if (this.mapArbre.get(arbre.getIdBase())== null) {
+			throw new Exception("Arbre non ajoutï¿½");
+		}
+		this.listeNotification.add(new PlantationNotification(arbre));
 	}
 	
-	public void supprimerArbre(Arbre arbre) {
+	/** Abbat l'arbre et envoye une notification d'abattage
+	 * @param arbre abattu
+	 * @throws Exception L'arbre n'a pas ï¿½tï¿½ retirï¿½
+	 */
+	public void abattreArbre(Arbre arbre) throws Exception {
 		this.mapArbre.remove(arbre.getIdBase());
-		this.listeNotification.add(new AbattageArbreNotification(arbre));
+		if (this.mapArbre.get(arbre.getIdBase()) != null) {
+			throw new Exception("Arbre non retirï¿½");
+		}
+		this.listeNotification.add(new AbattageNotification(arbre));
 	}
 	
-	public void rendreRemarquable(Arbre arbre) {
+	/** Classifie l'arbre remarquable et envoie une notiication de classification remarquable
+	 * @param arbre classifie remarquable
+	 */
+	public void classifierRemarquable(Arbre arbre) {                          
 		this.mapArbre.get(arbre.getIdBase()).setRemarquable(true);
-		this.listeNotification.add(new EstRemarquableNotification(arbre));
+		this.listeNotification.add(new ClassificationRemarquableNotification(arbre));
 	}
-	
-	
 
 	/** Obtenir le/la mapArbre
 	 * @return le/la mapArbre
@@ -56,13 +72,12 @@ public class Municipalite {
 		return mapArbre;
 	}
 
-	/** Définition de mapArbre
-	 * @param mapArbre le/la mapArbre à définir
+	/** Dï¿½finition de mapArbre
+	 * @param mapArbre le/la mapArbre ï¿½ dï¿½finir
 	 */
 	public void setMapArbre(HashMap<Integer, Arbre> mapArbre) {
 		this.mapArbre = mapArbre;
 	}
-
 	
 	/** Obtenir le/la listeNotification
 	 * @return le/la listeNotification
@@ -70,13 +85,13 @@ public class Municipalite {
 	public ArrayList<Notification> getListeNotification() {
 		return listeNotification;
 	}
-	/** Définition de listeNotification
-	 * @param listeNotification le/la listeNotification à définir
+	
+	/** Dï¿½finition de listeNotification
+	 * @param listeNotification le/la listeNotification ï¿½ dï¿½finir
 	 */
 	public void setListeNotification(ArrayList<Notification> listeNotification) {
 		this.listeNotification = listeNotification;
 	}
-
-
+	
 
 }

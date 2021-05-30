@@ -6,7 +6,6 @@ public class Externe extends Compte {
 	
 	private String designation;
 	private String adresse;
-	
 	private TypeDonateur typeDonateur;
 
 	/** Crée un compte externe
