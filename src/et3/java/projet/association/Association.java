@@ -120,7 +120,7 @@ public class Association {
 	 */
 	private void supprimerMembresSansCotisation(int annee) {
 		for (Membre membre : this.getMembres().values()) {
-			if(membre.isCotisationPayee(annee)) {
+			if(!membre.isCotisationPayee(annee)) {
 				try {
 					this.desinscriptionMembre(membre);
 				} catch (Exception e) {

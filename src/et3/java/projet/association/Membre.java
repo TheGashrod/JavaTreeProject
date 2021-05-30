@@ -117,7 +117,7 @@ public class Membre extends Compte {
 	 */
 	public String getDonneesPersonnelles() {
 		ArrayList<EcritureComptable> hisoriqueMembre = this.getAssociation().getLivreComptable().getLivreByCompte(this).getHistoriqueEcritures();
-		String donnesPersonnelles = "Nom;Prenom;Date de naissance;Adress;Date de dernière inscription; Liste des cotisations \n";
+		String donnesPersonnelles = "Nom;Prenom;Date de naissance;Adress;Date de derniÃ¨re inscription; Liste des cotisations \n";
 		donnesPersonnelles += this.nom +";"+ this.prenom +";"+ this.dateDeNaissance +";"+ this.adresse +";"+ hisoriqueMembre.get(hisoriqueMembre.size()-1).getDate()
 				+";"+ hisoriqueMembre;
 		return donnesPersonnelles;

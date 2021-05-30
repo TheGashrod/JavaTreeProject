@@ -63,8 +63,8 @@ public class Date implements Comparable<Date> {
 	}
 
 
-	/** Définition de jour
-	 * @param jour le/la jour à définir
+	/** DÃ©finition de jour
+	 * @param jour le/la jour Ã  dÃ©finir
 	 */
 	public void setJour(int jour) {
 		this.jour = jour;
@@ -79,8 +79,8 @@ public class Date implements Comparable<Date> {
 	}
 
 
-	/** Définition de mois
-	 * @param mois le/la mois à définir
+	/** Dï¿½finition de mois
+	 * @param mois le/la mois Ã  dÃ©finir
 	 */
 	public void setMois(int mois) {
 		this.mois = mois;
@@ -95,8 +95,8 @@ public class Date implements Comparable<Date> {
 	}
 
 
-	/** Définition de annee
-	 * @param annee le/la annee à définir
+	/** Dï¿½finition de annee
+	 * @param annee le/la annee Ã  dÃ©finir
 	 */
 	public void setAnnee(int annee) {
 		this.annee = annee;
