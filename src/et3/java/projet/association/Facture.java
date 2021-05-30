@@ -22,6 +22,13 @@ public class Facture extends Evenement {
 		return "Facture [numero=" + numero + "]";
 	}
 	
+	/**
+	 * Retourne une chaine de caractères correspondant à la facture
+	 */
+	@Override
+	public String toStringComptabilite() {
+		return "Facture [numero=" + numero + "]";
+	}
 	
 
 }

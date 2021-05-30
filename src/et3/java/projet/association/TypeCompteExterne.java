@@ -1,6 +1,6 @@
 package et3.java.projet.association;
 
-public class TypeDonateur {
+public class TypeCompteExterne {
 
 	private String nature;
 	private boolean servicePublic;
@@ -10,7 +10,7 @@ public class TypeDonateur {
 	 * @param nature
 	 * @param servicePublic
 	 */
-	public TypeDonateur(String nature, boolean servicePublic) {
+	public TypeCompteExterne(String nature, boolean servicePublic) {
 		super();
 		this.nature = nature;
 		this.servicePublic = servicePublic;
@@ -21,7 +21,7 @@ public class TypeDonateur {
 	 */
 	@Override
 	public String toString() {
-		return "TypeDonateur [nature=" + nature + ", servicePublic=" + servicePublic + "]";
+		return "TypeCompteExterne [nature=" + nature + ", servicePublic=" + servicePublic + "]";
 	}
 	
 	

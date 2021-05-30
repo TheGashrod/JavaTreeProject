@@ -89,7 +89,7 @@ public class EcritureComptable {
 	public String toString() {
 		String ecritureComptableString="";
 		try {
-			ecritureComptableString = date + " | " + somme + "€  | " + compte + " | "+ evenement.toStringComptabilite();
+			ecritureComptableString = date + " | " + somme + " euros  | " + compte + " | "+ evenement.toStringComptabilite();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
