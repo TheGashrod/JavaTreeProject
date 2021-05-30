@@ -66,6 +66,7 @@ public class Association {
 	 */
 	public void inscriptionExterne(Externe externe) {
 		this.externes.put(externe.getId(), externe);
+		externe.setAssociation(this);
 	}
 	
 	/** Desinscription externe
@@ -73,6 +74,7 @@ public class Association {
 	 */
 	public void desinscriptionExterne(Externe externe) {
 		this.externes.remove(externe.getId());
+		externe.setAssociation(null);
 	}
 	
 	

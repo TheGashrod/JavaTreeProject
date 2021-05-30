@@ -20,7 +20,7 @@ public class Municipalite {
 	public String listeArbretoString() {
 		String s = "";
 
-		for(Map.Entry mapentry : mapArbre.entrySet()) {
+		for(Map.Entry<Integer, Arbre> mapentry : mapArbre.entrySet()) {
         	s += mapentry.getValue().toString() + "\n" ;
         }
 		return s;
@@ -53,7 +53,7 @@ public class Municipalite {
 	/** Classifie l'arbre remarquable et envoie une notiication de classification remarquable
 	 * @param arbre classifie remarquable
 	 */
-	public void classifierRemarquable(Arbre arbre) {                          //?
+	public void classifierRemarquable(Arbre arbre) {                          
 		this.mapArbre.get(arbre.getIdBase()).setRemarquable(true);
 		this.listeNotification.add(new ClassificationRemarquable(arbre));
 	}
