@@ -27,24 +27,35 @@ public class Municipalite {
 	}
 	
 	
+// Cette fonction est utilisée pour constituer la base de données des arbres de la municipalité à partir du fichier csv,
+//	ensuite on utilisera PlanterNouvelAbrbre  pour ajouter un arbre et envoyer une notification 
 	public void ajouterArbre(Arbre arbre) {
 		this.mapArbre.put(arbre.getIdBase(),arbre);
 		
 	}
 	
-	public void ajouterNouvelArbre(Arbre arbre) {
+	/**Plante l'arbre et envoye une notification de plantation
+	 * @param arbre planté
+	 */
+	public void planterNouvelArbre(Arbre arbre) {
 		this.mapArbre.put(arbre.getIdBase(),arbre);
-		this.listeNotification.add(new PlantationArbreNotification(arbre));
+		this.listeNotification.add(new Plantation(arbre));
 	}
 	
-	public void supprimerArbre(Arbre arbre) {
+	/** Abbat l'arbre et envoye une notification d'abattage
+	 * @param arbre abattu
+	 */
+	public void abattreArbre(Arbre arbre) {
 		this.mapArbre.remove(arbre.getIdBase());
-		this.listeNotification.add(new AbattageArbreNotification(arbre));
+		this.listeNotification.add(new Abattage(arbre));
 	}
 	
-	public void rendreRemarquable(Arbre arbre) {
+	/** Classifie l'arbre remarquable et envoie une notiication de classification remarquable
+	 * @param arbre classifie remarquable
+	 */
+	public void classifierRemarquable(Arbre arbre) {                          //?
 		this.mapArbre.get(arbre.getIdBase()).setRemarquable(true);
-		this.listeNotification.add(new EstRemarquableNotification(arbre));
+		this.listeNotification.add(new ClassificationRemarquable(arbre));
 	}
 	
 	

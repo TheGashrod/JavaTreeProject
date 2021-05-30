@@ -10,20 +10,16 @@ import et3.java.projet.outils.Date;
 
 public class Membre extends Compte {
 	
-	private static int count=0;
-	
-	private int id;
 	private String nom;
 	private String prenom;
 	private String adresse;
 	private boolean estPresident;
 	private Date dateDeNaissance;
 	
-	private Association association;
 	private LinkedList<Arbre> listeNominations;
 	
 	/**
-	 * @param id
+
 	 * @param nom
 	 * @param prenom
 	 * @param adresse
@@ -34,8 +30,6 @@ public class Membre extends Compte {
 	public Membre(String nom, String prenom, String adresse, boolean estPresident, Date dateDeNaissance) {
 		super();
 		
-		count++;
-		this.id = count;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresse = adresse;
@@ -50,22 +44,10 @@ public class Membre extends Compte {
 	 */
 	@Override
 	public String toString() {
-		return "Membre [id=" + id + ", nom=" + nom + ", prenom=" + prenom+ ", adresse=" + adresse + ", dateDeNaissance=" + dateDeNaissance + "]";
+		return "Membre [id=" + this.getId() + ", nom=" + nom + ", prenom=" + prenom+ ", adresse=" + adresse + ", dateDeNaissance=" + dateDeNaissance + "]";
 	}
 
-	/** Obtenir le/la association
-	 * @return le/la association
-	 */
-	public Association getAssociation() {
-		return association;
-	}
 
-	/** Définition de association
-	 * @param association le/la association à définir
-	 */
-	public void setAssociation(Association association) {
-		this.association = association;
-	}
 		
 	/** Est-ce que la cotisation du membre est payée pour l'annee demandée
 	 * @param annee
@@ -87,6 +69,8 @@ public class Membre extends Compte {
 		return false;
 	}
 	
+	
+
 	/** Obtenir l'historique des transactions liées à ce membre
 	 * @return LivreComptable contenant les EcrituresComptable correspondantes
 	 */
@@ -99,7 +83,7 @@ public class Membre extends Compte {
 	 */
 	public void payerCotisation(int annee) {
 		if(!this.isCotisationPayee(annee)) {
-			association.payerCotisation(this, annee);
+			this.getAssociation().payerCotisation(this, annee);
 		}
 	}
 	
@@ -121,7 +105,8 @@ public class Membre extends Compte {
 			}
 		}
 	}
-	
+
+
 	
 
 }

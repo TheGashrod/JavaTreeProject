@@ -1,6 +1,7 @@
 package et3.java.projet.tests;
 
 import java.io.File;
+import java.util.Map;
 
 import et3.java.projet.association.*;
 import et3.java.projet.comptabilite.LivreComptable;
@@ -44,6 +45,7 @@ public class Main {
 		
 		Association association = new Association();
 		
+		
 		Membre membre1 = new Membre("Doe", "John", "1 rue du bois, Paris", false, new Date(1998, 02, 12));
 		
 		// Inscription de membres 
@@ -52,10 +54,17 @@ public class Main {
 		association.inscriptionMembre(new Membre("Smith", "Paul", "24 avenue de la coline, Bordeaux", false, new Date(2000, 05, 29)));
 		
 		
-		// Tous les membres payent leur cotisation
-		for (Membre membre : association.getMembres()) {
-			membre.payerCotisation(2021);
+//		// Tous les membres payent leur cotisation
+//		for (Membre membre : association.getMembres()) {
+//			membre.payerCotisation(2021);
+//		}
+//		
+		for(Map.Entry<Integer, Membre > mapMembres : association.getMembres().entrySet()) {
+			mapMembres.getValue().payerCotisation(2021);
 		}
+		
+		
+		
 		
 		// Vérifier que le membre a bien payé sa cotisation
 		System.out.println(membre1.isCotisationPayee(2020));
