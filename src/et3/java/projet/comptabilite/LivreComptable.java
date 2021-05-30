@@ -53,6 +53,19 @@ public class LivreComptable {
 		return historiqueEcritures;
 	}
 	
+	/** Obtenir le solde du LivreComptable (somme des montants des EcritureComptable)
+	 * @return le solde du LivreComptable
+	 */
+	public double getSolde() {
+		double solde = 0;
+		
+		for (EcritureComptable ecritureComptable : this.getHistoriqueEcritures()) {
+			solde+=ecritureComptable.getSomme();
+		}
+		
+		return solde;
+	}
+	
 	
 	
 }

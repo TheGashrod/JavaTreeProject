@@ -59,5 +59,12 @@ public class Association {
 	public void payerCotisation(Membre membre, int annee) {
 		this.livreComptable.ajouterEcritureComptable(new EcritureComptable(new Cotisation(annee), membre, new Date(), MONTANT_COTISATION));
 	}
+	
+	/** Obtenir le solde de l'association 
+	 * @return le solde
+	 */
+	public double getSolde() {
+		return this.livreComptable.getSolde();
+	}
 
 }
