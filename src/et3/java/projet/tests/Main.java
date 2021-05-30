@@ -44,12 +44,14 @@ public class Main {
 		
 		Association association = new Association();
 		
-		Membre membre1 = new Membre("Doe", "John", "1 rue du bois, Paris", false, new Date(1998, 02, 12));
+		Membre membre1 = new Membre("Doe", "John", "1 rue du bois, Paris", true, new Date(1998, 02, 12));
+		Membre membre2 = new Membre("Doe", "Jane", "1 rue du bois, Paris", false, new Date(1999, 07, 03));
+		Membre membre3 = new Membre("Smith", "Paul", "24 avenue de la coline, Bordeaux", false, new Date(2000, 05, 29));
 		
 		// Inscription de membres 
 		association.inscriptionMembre(membre1);
-		association.inscriptionMembre(new Membre("Doe", "Jane", "1 rue du bois, Paris", false, new Date(1999, 07, 03)));
-		association.inscriptionMembre(new Membre("Smith", "Paul", "24 avenue de la coline, Bordeaux", false, new Date(2000, 05, 29)));
+		association.inscriptionMembre(membre2);
+		association.inscriptionMembre(membre3);
 		
 		
 		// Tous les membres payent leur cotisation
@@ -80,10 +82,24 @@ public class Main {
 		// La nomination d'un 6ème arbre supprime le plus ancien choix
 		membre1.nominerArbre(municipalite.getMapArbre().get(212872));
 		
+		membre2.nominerArbre(municipalite.getMapArbre().get(212872));
+		membre2.nominerArbre(municipalite.getMapArbre().get(294889));
+		membre3.nominerArbre(municipalite.getMapArbre().get(194396));
+		membre3.nominerArbre(municipalite.getMapArbre().get(213431));
+		membre3.nominerArbre(municipalite.getMapArbre().get(132034));
+		
+		membre3.nominerArbre(municipalite.getMapArbre().get(212872));
+		membre3.nominerArbre(municipalite.getMapArbre().get(131050));
+		membre3.nominerArbre(municipalite.getMapArbre().get(194396));
+		membre3.nominerArbre(municipalite.getMapArbre().get(251653));
+		membre3.nominerArbre(municipalite.getMapArbre().get(227788));
+		
+		
 		System.out.println(membre1.getListeNominations());
 		
+		System.out.println("--------------------------------------------------");
 		
-		
+		System.out.println(association.getListePropositionClassificationRemarquable());
 		
 		
 		//System.out.println(association.genererRapportActivite());
