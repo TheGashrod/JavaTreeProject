@@ -24,6 +24,8 @@ public class Association {
 	
 	ArrayList<Membre> membres;
 	
+	HashMap<Visite, Membre> visites;
+	
 	static void finExerciceBudgetaire() {}
 	
 	/** Obtenir la liste des 5 arbres avec le plus de votes des membres
@@ -82,6 +84,8 @@ public class Association {
 	public Association() {
 		this.livreComptable = new LivreComptable();
 		this.membres = new ArrayList<Membre>();
+		
+		this.visites = new HashMap<Visite, Membre>();
 	}
 	
 	/** Inscription du membre dans l'association
@@ -119,6 +123,41 @@ public class Association {
 	 */
 	public double getSolde() {
 		return this.livreComptable.getSolde();
+	}
+	
+	/** Programmer une visite
+	 * @param visite à programmer
+	 * @param membre effectuant la visite
+	 * @throws Exception si une visite est déjà programmée dans une date future
+	 */
+	public void programmerVisite(Visite visite, Membre membre) throws Exception {
+		
+		ArrayList<Visite> visitesArbre = this.getVisitesByArbre(visite.getArbre());
+		Date aujourdhui = new Date();
+		
+		for (Visite visite2 : visitesArbre) {
+			// Si une visite est déjà programmée pour une date future
+			if (visite2.getDate().compareTo(aujourdhui)>=0) {
+				throw new Exception("Une visite est déjà programmée");
+			}
+		}
+		
+		this.visites.put(visite, membre);
+		visite.setAssociation(this);
+	}
+	
+	/** Obtenir la liste des visites de l'arbre demandé
+	 * @param arbre
+	 * @return la liste des visites
+	 */
+	public ArrayList<Visite> getVisitesByArbre(Arbre arbre) {
+		ArrayList<Visite> visitesArbre=new ArrayList<Visite>();
+		for ( Visite visite : visites.keySet()) {
+			if ( visite.getArbre() == arbre ) {
+				visitesArbre.add(visite);
+			}
+		}
+		return visitesArbre;
 	}
 
 }

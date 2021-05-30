@@ -101,6 +101,20 @@ public class Main {
 		
 		System.out.println(association.getListePropositionClassificationRemarquable());
 		
+		try {
+			association.programmerVisite(new Visite(new Date(2021, 5, 28), municipalite.getMapArbre().get(227788)), membre3);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			association.programmerVisite(new Visite(new Date(2021, 5, 31), municipalite.getMapArbre().get(227788)), membre3);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		//System.out.println(association.genererRapportActivite());
 		
