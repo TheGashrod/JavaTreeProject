@@ -12,7 +12,7 @@ import et3.java.projet.outils.*;
 public class Main 
 {
 	/*TEST*/
-	public static void main(String[] args) 
+	public static void main(String[] args) throws Exception 
 	{	
 		Municipalite municipalite = new Municipalite();
 		if(args.length > 0)
