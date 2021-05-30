@@ -14,7 +14,7 @@ TODO :
     [x] nombre maximum de visites par an par membre )
     [x] liste des arbres remarquables par ancienneté de leur dernière visite
 
-[ ] Fin exercice budgétaire
+[x] Fin exercice budgétaire
 [x] Vérifier cotisation des membres, sinon exclure ( quitter association )
 
 [x] Vérifier solde avant paiement

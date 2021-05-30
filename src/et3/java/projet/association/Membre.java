@@ -68,8 +68,6 @@ public class Membre extends Compte {
 
 		return false;
 	}
-	
-	
 
 	/** Obtenir l'historique des transactions liées à ce membre
 	 * @return LivreComptable contenant les EcrituresComptable correspondantes

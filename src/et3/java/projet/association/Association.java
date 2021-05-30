@@ -35,7 +35,36 @@ public class Association {
 	
 	private HashMap<Visite, Membre> visites;
 	
-	static void finExerciceBudgetaire() {}
+	
+	/**
+	 * Crée une association
+	 */
+	public Association() {
+		this.livreComptable = new LivreComptable();
+
+		this.visites = new HashMap<Visite, Membre>();
+
+		this.membres = new HashMap<Integer,Membre>();
+	}
+	
+	/** Fin de l'exercice budgétaire pour l'annee demandée
+	 * @param annee
+	 */
+	public void finExerciceBudgetaire(int annee) {
+		System.out.println("Fin de l'exercice budgétaire de l'année "+annee);
+		
+		System.out.println("1. Révocation des membres n’ayant pas réglé leur cotisation.");
+		this.supprimerMembresSansCotisation(annee);
+		
+		System.out.println("2. Constitution et transmission de la liste proposée pour la classification en arbres remarquables.");
+		System.out.println(this.getListePropositionClassificationRemarquable());
+		
+		System.out.println("3. Génération du rapport d’activité pour l’exercice écoulé.");
+		System.out.println(this.genererRapportActivite());
+		
+		System.out.println("4. Envoi des demandes de subventions/dons et réception des éventuelles sommes.");
+		System.out.println(this.envoyerDemandesFinancement());
+	}
 	
 	/** Obtenir la liste des 5 arbres avec le plus de votes des membres
 	 * @return liste des id des 5 arbres
@@ -117,17 +146,6 @@ public class Association {
 			}
 		}
 		return demandesFinancement;
-	}
-	
-	/**
-	 * Crée une association
-	 */
-	public Association() {
-		this.livreComptable = new LivreComptable();
-
-		this.visites = new HashMap<Visite, Membre>();
-
-		this.membres = new HashMap<Integer,Membre>();
 	}
 	
 	
