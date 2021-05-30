@@ -119,10 +119,14 @@ public class Association {
 		if (this.membres.get(membre.getId()) == null) {
 			throw new Exception("Le membre n'est pas inscrit");
 		}
+		
 		this.membres.remove(membre.getId());
 		if (this.membres.get(membre.getId()) != null) {
 			throw new Exception("Le membre n'a pas �t� desinscrit");
 		}
+		
+		membre.anonymisationCompte();
+		
 		membre.setAssociation(null);
 	}
 	
@@ -150,10 +154,14 @@ public class Association {
 		if (this.membres.get(externe.getId()) == null) {
 			throw new Exception("L'externe n'est pas inscrit");
 		}
+		
 		this.externes.remove(externe.getId());
 		if (this.membres.get(externe.getId()) != null) {
 			throw new Exception("L'externe n'a pas �t� desinscrit");
 		}
+		
+		externe.anonymisationCompte();
+		
 		externe.setAssociation(null);
 	}
 	

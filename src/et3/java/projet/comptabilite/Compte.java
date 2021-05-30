@@ -1,8 +1,10 @@
 package et3.java.projet.comptabilite;
 
 import et3.java.projet.association.Association;
-
-//import static et3.java.projet.comptabilite.Compte.count;
+import et3.java.projet.association.Externe;
+import et3.java.projet.association.Membre;
+import et3.java.projet.association.TypeDonateur;
+import et3.java.projet.outils.Date;
 
 public abstract class Compte {
 	
@@ -52,5 +54,24 @@ public abstract class Compte {
 	 */
 	public void setAssociation(Association association) {
 		this.association = association;
+	}
+	
+	/** Remplacement du Compte dans les écritures comptables par un compte anonyme
+	 * @throws Exception si le compte est toujours présent dans au moins une écriture comptable
+	 */
+	public void anonymisationCompte() throws Exception {
+		// Anonymisation des Ecritures Comptables liées au compte
+		Compte compteAnonyme = new Externe("Compte supprimé : id original="+this.getId(), "", new TypeDonateur("", false));
+		
+		LivreComptable historiqueMembre  = this.getAssociation().getLivreComptable().getLivreByCompte(this);
+		
+		for (EcritureComptable ecritureComptable : historiqueMembre.getHistoriqueEcritures()) {
+			ecritureComptable.setCompte(compteAnonyme);
+		}
+		
+		if(!this.getAssociation().getLivreComptable().getLivreByCompte(this).getHistoriqueEcritures().isEmpty()) {
+			throw new Exception("Le compte n'as pas pu être anonymisé");
+		}
+		
 	}
 }
