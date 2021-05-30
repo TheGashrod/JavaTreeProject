@@ -2,6 +2,7 @@ package et3.java.projet.application;
 //this is a test
 import java.io.File;
 
+
 import et3.java.projet.association.*;
 import et3.java.projet.data.FileReader;
 import et3.java.projet.municipalite.Arbre;
@@ -57,6 +58,11 @@ public class Main
 		municipalite.rendreRemarquable(arbre);
 		municipalite.supprimerArbre(arbre);
 		System.out.println(municipalite.getListeNotification());
+		
+		
+		// test date d'aujourd'hui
+		Date t1 = new Date();
+		System.out.println( "today : " + t1 );
 		
 		
 		

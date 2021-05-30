@@ -1,5 +1,7 @@
 package et3.java.projet.outils;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 public class Date implements Comparable<Date> {
 	
@@ -20,8 +22,11 @@ public class Date implements Comparable<Date> {
 	 * Met la date d'aujourd'hui :)
 	 */
 	public Date() {
-		//Solution temporaire
-		this(2021, 05, 29);
+		ZoneId zonedId = ZoneId.of( "America/Montreal" );
+		LocalDate today = LocalDate.now( zonedId );
+		this.setJour(today.getDayOfMonth());
+		this.setMois(today.getMonth().getValue());
+		this.setAnnee(today.getYear());
 	}
 	
 	
@@ -50,6 +55,52 @@ public class Date implements Comparable<Date> {
 		return jour + "/" + mois + "/" + annee;
 	}
 	
+	/** Obtenir le/la jour
+	 * @return le/la jour
+	 */
+	public int getJour() {
+		return jour;
+	}
+
+
+	/** Définition de jour
+	 * @param jour le/la jour à définir
+	 */
+	public void setJour(int jour) {
+		this.jour = jour;
+	}
+
+
+	/** Obtenir le/la mois
+	 * @return le/la mois
+	 */
+	public int getMois() {
+		return mois;
+	}
+
+
+	/** Définition de mois
+	 * @param mois le/la mois à définir
+	 */
+	public void setMois(int mois) {
+		this.mois = mois;
+	}
+
+
+	/** Obtenir le/la annee
+	 * @return le/la annee
+	 */
+	public int getAnnee() {
+		return annee;
+	}
+
+
+	/** Définition de annee
+	 * @param annee le/la annee à définir
+	 */
+	public void setAnnee(int annee) {
+		this.annee = annee;
+	}
 	
 
 }
