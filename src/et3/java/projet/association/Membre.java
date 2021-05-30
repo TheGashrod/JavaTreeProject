@@ -83,7 +83,7 @@ public class Membre extends Compte {
 	 */
 	public void payerCotisation(int annee) {
 		if(!this.isCotisationPayee(annee)) {
-			this.getAssociation().payerCotisation(this, annee);
+			this.getAssociation().recetteCotisation(this, annee);
 		}
 	}
 	

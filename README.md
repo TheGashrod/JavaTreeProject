@@ -17,7 +17,7 @@ TODO :
 [ ] Fin exercice budgétaire
 [ ] Vérifier cotisation des membres, sinon exclure ( quitter association )
 
-[ ] Vérifier solde avant paiement
+[x] Vérifier solde avant paiement
 
 [ ] obtenir une représentation (dans un format à spécifier) de l’ensemble de ses données personnelles 
 (nom, prénom, date de naissance, adresse, date de dernière inscription, liste de ses cotisations annuelles)

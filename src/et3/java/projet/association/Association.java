@@ -203,8 +203,12 @@ public class Association {
 	 * @param membre
 	 * @param annee
 	 */
-	public void payerCotisation(Membre membre, int annee) {
-		this.livreComptable.ajouterEcritureComptable(new EcritureComptable(new Cotisation(annee), membre, new Date(), MONTANT_COTISATION));
+	public void recetteCotisation(Membre membre, int annee) {
+		try {
+			this.livreComptable.ajouterEcritureComptable(new EcritureComptable(new Cotisation(annee), membre, new Date(), MONTANT_COTISATION), false);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/** Obtenir le solde de l'association 
@@ -313,13 +317,17 @@ public class Association {
 		return visitesMembre;
 	}
 	
+	/** Retourne vrai si la visite demandée est déjà defrayée
+	 * @param visite
+	 * @return vrai si la visite est déjà defrayée
+	 */
 	public boolean isDefrayee(Visite visite){
 		return !(this.getLivreComptable().getLivreByEvenement(visite).getHistoriqueEcritures().isEmpty());
 	}
 	
 	/** Défrayer le membre ayant programmé la visite
 	 * @param visite
-	 * @throws Exception si la visite a déjà été défrayée
+	 * @throws Exception si la visite a déjà été défrayée, ou si le solde est insuffisant
 	 */
 	public void defrayerMembrePourVisite(Visite visite) throws Exception {
 		
@@ -328,7 +336,7 @@ public class Association {
 		}
 		
 		Membre membreVisite = this.visites.get(visite);
-		this.getLivreComptable().ajouterEcritureComptable(new EcritureComptable(visite, membreVisite, new Date(), -MONTANT_DEFRAIEMENT_VISITE));
+		this.getLivreComptable().ajouterEcritureComptable(new EcritureComptable(visite, membreVisite, new Date(), -MONTANT_DEFRAIEMENT_VISITE), true);
 	}
 
 }

@@ -128,6 +128,7 @@ public class Main {
 		
 //		System.out.println(municipalite.getArbresRemarquables());
 		System.out.println(association.genererRapportActivite());
+		System.out.println(association.getSolde());
 		
 	}
 	

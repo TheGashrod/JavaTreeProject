@@ -15,8 +15,17 @@ public class LivreComptable {
 	
 	/** Ajoute une écriture comptable à l'historique des écritures comptables
 	 * @param ecritureComptable
+	 * @param verifierSolde
+	 * @throws Exception si le solde du livre deviendrait négatif après l'ajout de cette écriture si vérification du solde
 	 */
-	public void ajouterEcritureComptable(EcritureComptable ecritureComptable){
+	public void ajouterEcritureComptable(EcritureComptable ecritureComptable, boolean verifierSolde) throws Exception{
+		
+		if(verifierSolde) {
+			if(this.getSolde()+ecritureComptable.getSomme() < 0) {
+				throw new Exception("Impossible d'ajouter cette écriture : \n"+ecritureComptable+"\n Solde insuffisant :"+this.getSolde());
+			}
+		}
+		
 		this.historiqueEcritures.add(ecritureComptable);
 	}
 	
@@ -40,7 +49,11 @@ public class LivreComptable {
 		LivreComptable livre = new LivreComptable();
 		for (EcritureComptable ecritureComptable : historiqueEcritures) {
 			if(ecritureComptable.getCompte()==compte) {
-				livre.ajouterEcritureComptable(ecritureComptable);
+				try {
+					livre.ajouterEcritureComptable(ecritureComptable, false);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return livre;
@@ -54,7 +67,11 @@ public class LivreComptable {
 		LivreComptable livre = new LivreComptable();
 		for (EcritureComptable ecritureComptable : historiqueEcritures) {
 			if(ecritureComptable.getEvenement()==evenement) {
-				livre.ajouterEcritureComptable(ecritureComptable);
+				try {
+					livre.ajouterEcritureComptable(ecritureComptable, false);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return livre;
